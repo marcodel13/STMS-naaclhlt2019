@@ -1,0 +1,124 @@
+%
+% File naacl2019.tex
+%
+%% Based on the style files for ACL 2018 and NAACL 2018, which were
+%% Based on the style files for ACL-2015, with some improvements
+%%  taken from the NAACL-2016 style
+%% Based on the style files for ACL-2014, which were, in turn,
+%% based on ACL-2013, ACL-2012, ACL-2011, ACL-2010, ACL-IJCNLP-2009,
+%% EACL-2009, IJCNLP-2008...
+%% Based on the style files for EACL 2006 by 
+%%e.agirre@ehu.es or Sergi.Balari@uab.es
+%% and that of ACL 08 by Joakim Nivre and Noah Smith
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[hyperref]{naaclhlt2019}
+\usepackage{times}
+\usepackage{latexsym}
+
+\usepackage{tabularx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{color} 
+\usepackage{verbatim}
+\usepackage{calc}
+\usepackage{arydshln}
+\setlength\dashlinedash{0.7pt}
+\setlength\dashlinegap{1.pt}
+\setlength\arrayrulewidth{0.3pt}
+\usepackage{mathtools}
+\usepackage[draft]{todonotes}
+\newcommand{\raq}[1]{\textcolor{blue}{R: #1}}
+\newcommand{\marco}[1]{\textcolor{red}{M: #1}}
+\newcommand{\gbt}[1]{\textcolor{green}{G: #1}}
+\newcommand{\redd}{Reddit$_{13}$}
+\usepackage{soul}
+
+
+
+%\aclfinalcopy % Uncomment this line for the final submission
+%\def\aclpaperid{***} %  Enter the acl Paper ID here
+
+%\setlength\titlebox{5cm}
+% You can expand the titlebox if you need extra space
+% to show all the authors. Please do not make the titlebox
+% smaller than 5cm (the original size); we will check this
+% in the camera-ready version and ask you to change it back.
+
+\newcommand\BibTeX{B{\sc ib}\TeX}
+
+\title{Short-term meaning shift: an exploratory distributional analysis}
+
+\author{First Author \\
+  Affiliation / Address line 1 \\
+  Affiliation / Address line 2 \\
+  Affiliation / Address line 3 \\
+  {\tt email@domain} \\\And
+  Second Author \\
+  Affiliation / Address line 1 \\
+  Affiliation / Address line 2 \\
+  Affiliation / Address line 3 \\
+  {\tt email@domain} \\}
+
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+We investigate diachronic meaning shift that takes place in short periods of time (short-term meaning shift) and in an online community of speakers. We create a small dataset and use it to assess the performance of a standard model for meaning shift detection on short-term meaning shift, and find that this phenomenon poses specific difficulties for models based on the Distributional Hypothesis. 
+\end{abstract}
+
+%============================
+\section{Introduction}
+\label{sect:Introduction}
+
+\input{sec_introduction}
+ 
+%============================
+\section{Related Work}
+\label{sect:Related_Work}
+
+\input{sec_related_work}
+
+%============================
+\section{Data}
+\label{sect:Data}
+
+\input{sec_data}
+
+%============================
+\section{Experimental Setup}
+\label{sec:setup}
+
+\input{sec_setup}
+
+%============================
+\section{Results and Analysis}
+\label{sect:results}
+
+\input{sec_results}
+
+%============================
+\section{Conclusion}
+\label{sect:conc}
+
+\input{sec_conclusion}
+
+\bibliography{naaclhlt2019}
+\bibliographystyle{acl_natbib}
+
+%\bibliography{naaclhlt2019}
+%\bibliographystyle{acl_natbib}
+%\appendix
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+

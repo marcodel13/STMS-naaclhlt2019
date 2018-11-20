@@ -1,0 +1,139 @@
+For this study, we focus on an online forum of football fans,
+namely the r/LiverpoolFC subreddit, one of the many communities hosted
+by Reddit.\footnote{\url{https://www.reddit.com}.} 
+%Each of these
+%subreddits is essentially a forum in which subscribed users talk about
+%a specific topic, submit posts and comment on existing threads. 
+A community such as that of football fans tends to be very active and
+ interconnected, and hence is a good environment for observing
+linguistic innovations like meaning
+shift~\cite{hamilton2017loyalty}.
+
+We observe meaning shift in the period between 2013 and 2017.
+Following the typical approach in diachronic studies in NLP, we split
+the r/LiverpoolFC subreddit data into time bins. In order to enable a
+clear observation of short-term meaning shift, we define two,
+non-consecutive time bins: the first ($t_1$) contains data from
+2011-2013 and the second ($t_2$) from 2017.\footnote{These choices
+  ensure that the two datasets are approximately of the same size. The
+  r/LiverpoolFC subreddit exists since 2009, but very little content
+  was produced in 2009-2010.}
+% each of which is used to create
+%time-dependent word representations. We make the time bins
+%non-consecutive to enable observation of short-time meaning shift (see
+%Introduction). We end up with two time bins, where the first bin ($t1$) contains data from 2011-2013 and the second ($t2$)
+%from 2017.\footnote{These choices ensure that the two datasets are
+%  approximately of the same size. The r/LiverpoolFC subreddit exists
+%  since 2009, but very little content was produced in 2009-2010.}.
+ We also use a large sample of community-independent language for the
+initialization of the word vectors, namely, a random crawl from Reddit
+in 2013. For all three samples, we downloaded both textual content and time stamp of the posts (Table~\ref{tab:data} shows
+sample sizes).\footnote{We used the Python package Praw,
+  \url{https://pypi.python.org/pypi/praw}.}
+
+%----- TABLE ----------------------------------------------------
+\begin{table}[t]
+\centering
+\begin{tabular}{lccc}
+\bf sample & \bf time bin & \bf million tokens \\
+ \hline
+\redd &  2013 & {\raise.17ex\hbox{$\scriptstyle\sim$}}900 \\
+LiverpoolFC$_{13}$ & 2011-13 & 8.5\\
+LiverpoolFC$_{17}$ & 2017 & 11.9\\
+\end{tabular}
+\caption{Time bin and size of the datasets.}
+\label{tab:data}
+\end{table}
+%----- END TABLE -----------------------------------------
+
+\paragraph{Dataset.} For evaluation and analysis, we create a dataset
+with positive and negative meaning shift examples based on the
+linguistic material produced in r/LiverpoolFC.
+
+% A random sample of words would not contain many positive cases of
+% semantic, since most of the words in language tend to maintain a
+% relatively similar meaning in time.
+In order to create the dataset starting from the raw text downloaded
+from the subreddit, we initially leverage information about increase
+in frequency, which has been shown to positively correlate with
+meaning change
+\cite{wijaya2011understanding,kulkarni2015statistically}, and sample
+words with a significant increase in frequency between $t_1$ and $t_2$
+(an increase in relative frequency is considered significant if it is
+at least two standard deviations above the mean).\footnote{We consider
+  content words only, which we identify by using the external list
+  of common words available at
+  \url{https://www.wordfrequency.info/free.asp}} Frequency increase is
+not a necessary condition for meaning shift to take place; however,
+given the positive correlation mentioned above, it is a reasonable
+start, since a random selection of words would contain very few
+positive examples.
+
+This procedure yields {\raise.17ex\hbox{$\scriptstyle\sim$}}200 words.
+The first author of the paper went through the list of words to
+identify cases of meaning shift, based on the analysis of the contexts
+of use in the r/LiverpoolFC corpus. We then collected a set of positive
+and negative examples (100 words in total), which includes 1) words
+that present a significant increase in frequency and were annotated as
+meaning shift by the first author (34 words), 2) words that present a
+significant increase in frequency but that were not annotated as
+meaning shift by the first author (33 words), and 3) words that keep a
+constant frequency between $t_1$ and $t_2$, and are not considered as
+examples of meaning shift by us (33 words).\footnote{Words in the three lists have overall absolute frequency included in range [50-500].}
+
+We then created the final dataset via an online survey, which we posted
+in the r/LiverpoolFC subreddit to recruit participants.\footnote{Domain knowledge is needed for this task.} 
+%with some of the members of the r/LiverpoolFC subreddit.\footnote{Domain knowledge is needed for this task.} 
+We provided participants with the 100 words
+together with randomly chosen examples from each time period (1 to 5
+examples depending on the word). They were asked to label as many of
+the words as they wanted as `shift' or `no shift'. The order of presentation
+was randomized for each participant.
+
+Overall, 26 members of r/LiverpoolFC participated in the survey, and
+each word in the dataset received between 5 and 12 judgements
+(average=8.8). The interannotator agreement, computed as
+Krippendorff's alpha, is
+0.58 --a moderate level of
+agreement, as is common for semantic tasks \cite{artstein2008inter}. We assigned a
+final label to each word in the dataset according to the majority of
+votes received by the redditors. This resulted in a final dataset
+including 21 cases of meaning shift and 76 of no shift (total 97
+words).\footnote{Three words were removed from the dataset: `discord'
+  and `owls' due to the homonymy with proper names not detected by the
+  authors during the implementation of the survey; `tracking' because
+  the chosen examples clearly mislead the judgements of the
+  redditors.}
+
+%
+%%----- TABLE ----------------------------------------------------
+%\begin{table*}[t]
+%\centering
+%\begin{tabular}{lc}
+%\bf target word & \bf usage \\
+% \hline
+%word 1 & text texttexttexttexttexttexttexttexttexttext\\
+%word 2 & texttexttexttexttexttexttexttexttexttext\\
+%\end{tabular}
+%\caption{Time bin and size of the datasets.}
+%\label{tab:data}
+%\end{table*}
+%%----- END TABLE -----------------------------------------
+
+% The analysis of the words tagged as having undergone a shift in meaning reveals some clear types of semantic processes, such as:
+% \begin{itemize}[leftmargin=12pt,itemsep=0pt]
+% \item Figurative modulations such as metonymy (e.g.,
+%   \emph{highlighter} for a sports kit in a colour similar to that of a
+%   highlighter) and broadening (e.g., \emph{to lean} for `to sign up
+%   for a club', due to players typically leaning on something when
+%   posing for a photo right after signing in for the club).
+% \item Meaning conventions\todo{Removed referential in order to avoid confusion with sec 5}: conceptual pacts
+%   \cite{brennan1996conceptual} on how to refer to an entity or group
+%   (e.g., \emph{madman} to refer to the coach or \emph{believers}
+%   to refer to the LiverpoolFC fans) that have become conventionalised
+%   within the community.
+% \item Memes: mottos or slogans repeated for humorous purposes or
+%   community cohesiveness (e.g., \emph{coal} in expressions such as
+%   `more coal' uttered when cheering)
+% \end{itemize}
+%\todo{Removing ling analysis to make room for examples -- that is more important.}

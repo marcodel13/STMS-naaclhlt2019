@@ -1,0 +1,112 @@
+Several methods have been proposed to investigate long-term
+meaning shift: common to all of them is the computation of
+time-related distributional representations for words in the
+vocabulary, and the sequential comparison of such representations in
+order to detect a drop in self-similarity, usually
+interpreted as a shift in meaning.
+
+Among the most widely used techniques are Latent Semantic Analysis
+\cite{sagi2011tracing,jatowt2014framework}, Topic Modeling
+\cite{wijaya2011understanding,rohrdantz2011towards}, and simple
+co-occurence matrices of target words and context terms 
+\cite{gulordava2011distributional,xu2015computational}.
+More recently, researchers have used word embeddings computed using the skip-gram model by \newcite{mikolov2013distributed}. Since embeddings computed in different semantic
+spaces are not directly comparable, time related representation are usually made comparable either by aligning different semantic spaces 
+%through a transformation matrix 
+\cite{kulkarni2015statistically,azarbonyad2017words, hamilton2016diachronic} or by initializing the embeddings at $t$+1 using those computed at $t$ \cite{kim2014temporal, del2016tracing,phillips2017intrinsic,szymanski2017temporal}. We adopt the latter methodology.
+
+Evaluation of semantic shift is difficult, due of the lack of annotated datasets \cite{frermann2016bayesian}. For this reason, evaluation is usually performed 
+%qualitatively  by the investigators themselves
+ by manually inspecting the $n$ words whose representation changes the most according to the model~\cite{hamilton2016diachronic,del2016tracing,kim2014temporal}. 
+In this work, we introduce and make available a small dataset for
+short-term meaning shift, which
+allows for a more systematic evaluation and analysis and enables comparison in future studies.
+
+%\raq{I find the last paragraph below a bit boring. The model is not our strong point, so no need to make this prominent. Instead I would highlight that previous work on LTMS is evaluated qualitatively or using judgements by the investigators. Instead, we use judgements by domain experts. }\todo{I agree with the change in emphasis, and also with Marco's remark that he'd like to keep this info. Marco, can you summarize and downplay the part about self-similarity and highlight what Raquel says?}
+% ACL VERSION
+%It is not straightforward to compute self-similarity across time with neural-based representations, since, due to the stochastic nature of the process, the embeddings computed in different semantic spaces are not directly comparable. Two main solutions have been proposed in the literature. The first consists in computing the embeddings separately for each time bin and then aligning different semantic spaces through a transformation matrix, that can be learned either employing linear regression \cite{kulkarni2015statistically,azarbonyad2017words} or orthogonal Procrustes \cite{hamilton2016diachronic}. The second type of solution,  introduced by \newcite{kim2014temporal}, is based on initializing new embeddings with existing embeddings. This methodology has been adopted in several recent diachronic studies\cite{del2016tracing,phillips2017intrinsic,szymanski2017temporal}, and we also adapt it for our purposes here.
+
+
+
+%####################################################
+
+
+%\gbt{Shouldn't you also cite your own previous work on meaning shift
+%  in online communities?}
+
+%Neural based work on diachronic meaning shift:\\
+%\cite{kulkarni2015statistically,zhang2015omnia,hamilton2016diachronic}. stress
+%that Hamilton says that emb are the best.\\ An alternative approach,
+%which we also adopt - with a slight change - in our work, is
+%introduced by \newcite{kim2014temporal}, who propose a simple but
+%effective methodology to make vectors trained on different corpora
+%directly comparable: embeddings created for year~$y$ are used to
+%initialise the vectors for year $y+1$. The process is progressively
+%applied to all time spans.\\ The SCAN model proposed by Frermann et
+%al. (2016) is a dynamic Bayesian topic model.  EXPLANATOIN OF THE
+%MODEL For each target word, a SCAN model is created that represents
+%the meaning of the word with two distributions: a K-dimensional
+%multinomial distribution over word senses φ and a V-dimensional
+%distribution over the vocabulary ψ for each word sense. As a
+%generative model, SCAN starts with a precision parameter κ , a Gamma
+%distribution with parameters a and b that controls the extent of
+%meaning change of φ. A three time step model involves the generation
+%of three sense distributions φ , φ , and φ ,at times t-1, t and
+%t+1. The sense distribution at each time generates a sense z, which
+%in turn generates the context words for the target
+%word. Simultaneously, for each time of t-1, t and t+1, the word-sense
+%distributions ψ , , ψ , and ψ , are generated, each of which also
+%generates the context words for the target word. The prior is an
+%intrinsic Gaussian Markov Random Field which encourages smooth change
+%of parameters at neighboring times. The inference is conducted with
+%blocked Gibbs sampling.
+
+
+%The phenomena of widening and narrowing are discussed in most
+%studies, such as Sagi et al. (2009) and Gulordava et
+%al. (2011). Novel senses, namely the birth of lexical senses are
+%discussed in details in Erk (2006), Lau et al. (2012), Mitra et
+%al. (2015), Frermann et al. (2016), Tang et al. (2016) and
+%others. Pejoration and amelioration are dealt with in Jatowt et
+%al. (2014)
+
+%%% ******** FROM CLIC 16 PAPER ********
+%The automatic modelling of diachronic shift of meaning has been investigated employing several different techniques. Among these, most recently, Latent Semantic Analysis \cite{sagi2011tracing,jatowt2014framework} and topic clustering \cite{wijaya2011understanding}.
+%Vector representations for diachronic shift of meaning have been used by \newcite{gulordava2011distributional}, with a simple co-occurence matrix of target words and context terms. \newcite{xu2012computational} and \newcite{jatowt2014framework} experimented both with a bag-of-words approach and a more linguistically motivated representation that also captures %not only the frequency of co-occurring words but also 
+%their relative positions in relation to the target word. 
+%%who build 
+%%context vectors for target words using simple co-occurrence matrix, where row elements are target words and column elements are context terms, and then apply local mutual information (LMI) to the matrix. Similar representations have been employed also by 
+%
+%Recently Word Embedding (see 4.4) have been used to investigate diachronic meaning shift: 
+%%When using word embeddings \note{do we need to introduce the term?} to investigate diachronic meaning shift, 
+%vectors are usually created independently for each time span and are mapped from one year to another via a transformation matrix, as %a transformation matrix is used to map vectors from one year to another %.  Indeed, even if there isn't an absolute correspondence between vectors in different semantic spaces, 
+%the relative positions of vectors in different spaces are stable 
+%\cite{kulkarni2015statistically,zhang2015omnia,hamilton2016diachronic}.
+%%, \note{FIX: and thus a linear (Wt′  →t (w) ∈ Rd×d) that maps a word from φt to φt′ is feasible.}
+%%These approaches are based on the idea that a transformation matrix can be learnt .... \note{mettere un po' di math: io direi solo spiegare in due parole} 
+%%and also by \cite{}, who use the orthogonal Procrustes to align the learned embeddings of different periods.
+%%%%%% THIS WAS A NICE BIT, BUT RELATED IS TOO LONG
+%%A similar model is used by \newcite{zhang2015omnia}, who introduce the concept of ``global similarity'' as the correspondence across years between terms 
+%%(``walkman'' and ``iPod'', e.g.)
+% %that share similar contexts, found using a transformation matrix for vectors in different periods. 
+%%In addition to this, they also compute a "local similarity", i.e. they also take into consideration the cosine similarity with some reference points in the synchronic semantic space.
+%An alternative approach, which we also adopt - with a slight change - in our work, is introduced by \newcite{kim2014temporal}, who propose a simple but effective methodology to make vectors trained on different corpora directly comparable: embeddings created for year~$y$ are used to initialise the vectors for year $y+1$. The process is  progressively applied to all time spans.
+%
+%
+%
+%%\newcite{tahmasebi:15} identify three types of language change: the first one is spelling variation, the second one is what they name \textit{term to term evolution}, where different words are used to refer to the same concepts over time, including named entities. This class comprises cases such as ``The Great War'' and ``World War I'', or ``fine" which in the past was used in the same was as now is ``foolish". The third type they identify is \textit{word sense evolution}. 
+%
+%%In order to find word to word evolution, words are mapped to concepts (word senses), and then the context of concepts is compared. 
+%
+%
+%%Instead, to find general word to word evolution, word senses must be used. A word is first mapped to a concept representing one of its word senses at one point in time. If one or several other words point to the same concept largely at the same period in time, then the words can be considered synonyms. If the time periods do not overlap, or only overlap in a shorter period, the words can be considered as temporal synonyms or word to word evolutions.
+%
+%%% see also: (context-based approach) Sagi, E., Kaufmann, S., Clark, B.: Semantic density analysis: comparing word meaning across time and phonetic space. In: Workshop on Geometrical Models of Natural Language Semantics, GEMS 2009, pp. 104–111 (2009). http://dl.acm.org/citation.cfm?id=1705415.1705429
+%%% methods making use of probabilistic topic models:
+%% Lau, J.H., Cook, P., McCarthy, D., Newman, D., Baldwin, T.: Word sense induction for novel sense detection. In: Conference of the European Chapter of the Association for Computational Linguistics, EACL 2012, pp. 591–601 (2012). http://aclweb.org/anthology-new/E/E12/E12-1060.pdf
+%%% Wijaya, D.T., Yeniterzi, R.: Understanding semantic change of words over centuries. In: Workshop on DETecting and Exploiting Cultural diversiTy on the social web, DETECT 2011, pp. 35–40 (2011). doi:10.1145/2064448.2064475
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

@@ -1,0 +1,146 @@
+
+% === DATA ==============
+
+\paragraph{Data.}
+We exploit user-generated language from an online forum of football fans,
+namely, the r/LiverpoolFC subreddit, one of the many communities hosted
+by the Reddit platform.\footnote{\url{https://www.reddit.com}.} 
+We focus on a short period of eight years, between 2011 and 2017. 
+In order to enable a clearer observation of short-term meaning shift, we define two
+non-consecutive time bins: the first one ($t_1$) contains data from
+2011--2013 and the second one ($t_2$) from 2017.\footnote{These choices
+  ensure that the samples in these two time bins are approximately of the same size -- see Table~\ref{tab:data}. The
+  r/LiverpoolFC subreddit exists since 2009, but very little content
+  was produced in 2009--2010.}
+ We also use a large sample of community-independent language for the
+initialization of the word vectors, namely, a random crawl from Reddit
+in 2013.\footnote{We used the Python package Praw for downloading the data, \url{https://pypi.python.org/pypi/praw}.} Table~\ref{tab:data} shows the size of each sample.
+
+%----- TABLE ----------------------------------------------------
+\begin{table}[t]\small
+\centering
+\begin{tabular}{lccc}
+\bf sample & \bf time bin & \bf million tokens \\
+ \hline
+\redd &  2013 & {\raise.17ex\hbox{$\scriptstyle\sim$}}900 \\
+LiverpoolFC$_{13}$ & 2011--13 & ~ 8.5\\
+LiverpoolFC$_{17}$ & 2017 & 11.9\\ \hline
+\end{tabular}
+\caption{Time bin and size of the datasets.}
+\label{tab:data}
+\end{table}
+%----- END TABLE -----------------------------------------
+
+
+
+%=== MODEL ==========
+
+\paragraph{Model.}
+%We adapt the methodology introduced by 
+%, which in turn builds on the skip-gram architecture by \newcite{mikolov2013distributed}
+In the method proposed by \newcite{kim2014temporal}, word
+embeddings for the first time bin $t_1$ are initialized randomly; then,
+given a sequence of time-related samples, embeddings for $t_i$
+are initialized using the embeddings of $t_{i-1}$ and further
+updated. 
+%with the standard skip-gram architecture.
+If at $t_i$ the word is used in the same contexts as in $t_{i-1}$, its embedding will only be marginally updated, whereas a major change in the context of use will lead to a stronger update of the embedding. The model makes embeddings across time bins directly comparable.
+
+%Recall that we want to spot changes that occur between 2013 and 2017 (the latter included). Since training directly on LiverpoolFC$_{13}$ is not possible due to data sparseness, 
+We implement the following steps:\footnote{We implement the model
+using the \texttt{gensim} library.}   
+First, we create word embeddings with the large sample \redd, to obtain meaning
+representations that are community-independent.\footnote{\redd\ embeddings are initialized randomly.} 
+We then use these embeddings
+to initialize those in LiverpoolFC$_{13}$, update the vectors on this
+sample, and thus obtain embeddings for time $t_1$. This step
+adapts the general embeddings from \redd\  to the
+LiverpoolFC community. Finally, we
+initialize the word embeddings for LiverpoolFC$_{17}$ with those of $t_1$, train on this sample and get embeddings for $t_2$.
+%To obtain word embeddings for time $t_2$, we
+%initialize the word embeddings for LiverpoolFC$_{17}$ with those of $t_1$, 
+%and train skip-gram further on the
+%LiverpoolFC$_{17}$ data.
+
+%We define the vocabulary to be represented as the intersection of the vocabularies of the three samples (\redd, LiverpoolFC$_{13}$, LiverpoolFC$_{17}$) which results in a vocabulary of 157k words.
+
+The vocabulary is defined as the intersection of the
+vocabularies of the three samples (\redd, LiverpoolFC$_{13}$,
+LiverpoolFC$_{17}$), and includes 157k words.
+%\todo{What is the vocabulary size?} 
+%\redd~embeddings are initialized randomly. 
+For \redd, we include only words that occur at least 20 times in the
+sample, so as to ensure meaningful representations for each word,
+while for the other two samples we do not use any frequency
+threshold: Since the embeddings used for the initialization of
+LiverpoolFC$_{13}$ encode community-independent meanings, if a word doesn't occur in
+LiverpoolFC$_{13}$ its representation will simply be as in \redd,
+which reflects the idea that if a word is not used in a community, then its meaning is not altered within
+that community. 
+%Instead, if a word's meaning changes in the
+%community, then we expect the word embedding to change accordingly
+%after training on the community-specific data.
+%Analogous reasoning applies to LiverpoolFC$_{17}$. 
+We train with standard skip-gram parameters \cite{levy2015improving}: window 5, learning rate 0.01, embedding dimension 200, hierarchical softmax.
+
+
+%===== EVALUATION DATASET ===============
+
+%\todo{This could be a new section altogether}
+%\todo{G This part can be shortened if rephrased, removing the chronological flavor of ``first we did   this, then we did that''. I partially did it.}
+\paragraph{Evaluation dataset.} 
+For evaluation and analysis, we create a small dataset of words to be annotated 
+as positive or negative meaning shift examples by community members without linguistic background.\footnote{Domain knowledge is needed for this task.}
+%\todo{Re-added the footnote cause I think it's important.}
+%In order to create the dataset 
+%starting from the raw linguistic material downloaded
+%from the subreddit, 
+We initially leverage information about increase
+in frequency, which has been shown to positively correlate with
+meaning change
+\cite{wijaya2011understanding,kulkarni2015statistically}, and sample
+words with a significant increase in relative frequency between $t_1$ and $t_2$
+(an increase is considered significant if it is
+at least two standard deviations above the mean).\footnote{We consider
+  content words only, which we identify by using the external list
+  of common words available at
+  \url{https://www.wordfrequency.info/free.asp}} Frequency increase is
+not a necessary condition for meaning shift to take place; however,
+given the positive correlation mentioned above, it is a reasonable
+starting point, as a random selection of words would contain very few
+positive examples. Our dataset is thus biased towards precision
+  over recall.
+% gbt: the following sounds apologetic, changed
+% In this exploratory study, we thus favour precision over recall. 
+
+This procedure yields $\sim$200 words. 
+The first author of the paper went through the list of words to
+identify cases of potential meaning shift, based on the analysis of the contexts
+of use in the r/LiverpoolFC data.
+%\todo{Gemma please check}
+By semantic shift, we mean change in the ontological type of what a word denotes (see examples in Section \ref{sect:results}). We considered only new senses - i.e., not existing senses which increase in frequency- , both for monosemous and polysemous words.
+This resulted in 34 words.
+We added two types of counfounders:
+% the aforementioned 34 words that present a significant increase in
+% frequency and were flagged as meaning shift candidates, 
+33 words with a significant increase in frequency but not marked as meaning shift candidates and 33 words with
+constant frequency between $t_1$ and $t_2$, included as a sanity check.\footnote{All words have absolute frequency in range [50--500].} 
+
+We then created an online survey, which we posted
+in the r/LiverpoolFC to recruit
+participants.
+The participants were shown the 100 words
+together with randomly chosen contexts of usage from each time period (1 to 5
+contexts depending on the word). For feasibility, they were asked to label words as `shift' or `no shift', although semantic shift is better viewed as graded (see below). The order of presentation was randomized for each participant.\footnote{Survey's instructions are in the supplementary material.}
+%  \gbt{Footnote 10: Do you mean that you are including all the context examples in the pdf? I wouldn't do that, it'll be humongous. I would only include the instructions and put the examples in some data file in the github together with the dataset + the rest.}
+%\marco{no, it means the 5 examples provided before the survey}
+Overall, 26 members of r/LiverpoolFC participated in the survey, and each word in the dataset received on average 8.8 judgements. The final dataset includes 97 words.\footnote{Three words were discarded: `discord'  and `owls' due to the homonymy with proper names not detected during survey's implementation; `tracking' because the chosen examples clearly mislead the judgements of the redditors.} Inter-annotator agreement, computed as Krippendorff's alpha, is $\alpha$ = 0.58, a relatively low value but common in semantic tasks \cite{artstein2008inter}.
+%\gbt{However, data inspection revealed that subjects' disagreements reflected a graded notion of shift -- the more subjects classified a word as `shift', the clearer and stronger the meaning shift.}\todo{I'm not super happy with this wording, but I wanted to emphasize that it makes sense to do this -- related to marco's addition below.}
+We use the annotations to define a gradable \emph{semantic shift index}, computed as the proportion of `shift' judgements a word received in the survey.\footnote{The shift index is exclusively based on the judgements by the redditors, and does not consider the preliminary candidates selection done by one of us.} The index ranges from 0 (no shift) to 1 (shift). As expected, all words with no frequency increase in $t_2$ have a shift index lower than 0.5, which validates our data selection method.
+%\todo{more explanations needed?}
+
+%The final dataset includes 21 words with a shift index higher than 0.5 and 76 words with a shift index below 0.5
+%\todo{Maybe say that these categories are arbitrary and we stick to a gradable notion? Or just remove this}
+% \marco{The index ranges from 0 to 1 and thus expresses a gradable notion of meaning shift.}
+%\marco{The index can have value in range [0,1], thus mirroring the idea that the strength of the meaning shift is gradable, a characteristics which has been highlighted in related studies on figurative language \cite{del2016assessing,dunn2014measuring}}. 
+%\raq{I'm not sure about this. First of all, cosine has the same property, pretty much anything based on vectors will have these property. So maybe it's just a matter of also has this property? (something like ``The index ranges from 0 to 1 and thus expresses a gradable notion of meaning shift''?). Second, mentioning  here  figurative language seems to come a bit our of the blue. }\marco{Answer: Agree, I would just say something as you suggest.}

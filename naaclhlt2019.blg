@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: naaclhlt2019.aux
+The style file: acl_natbib.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=20001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: naaclhlt2019.bib
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Warning--can't use both author and editor fields in hasan2009
+You've used 24 entries,
+            3571 wiz_defined-function locations,
+            825 strings with 10300 characters,
+and the built_in function-call counts, 17592 in all, are:
+= -- 1583
+> -- 740
+< -- 25
++ -- 241
+- -- 207
+* -- 1066
+:= -- 2549
+add.period$ -- 103
+call.type$ -- 24
+change.case$ -- 213
+chr.to.int$ -- 24
+cite$ -- 25
+duplicate$ -- 1211
+empty$ -- 1325
+format.name$ -- 285
+if$ -- 3922
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 238
+newline$ -- 124
+num.names$ -- 96
+pop$ -- 549
+preamble$ -- 1
+purify$ -- 165
+quote$ -- 0
+skip$ -- 903
+stack$ -- 0
+substring$ -- 721
+swap$ -- 598
+text.length$ -- 12
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 210
+warning$ -- 1
+while$ -- 114
+width$ -- 0
+write$ -- 315
+(There was 1 warning)

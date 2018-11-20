@@ -1,0 +1,166 @@
+%\raq{I would remove the first 2 paragraphs}
+%\todo[inline]{point 1}
+%Our hypothesis, common to previous work, is that the meaning shift of a word is mirrored by a change in the context of usage and this, in turn, in the increased cosine distance between its time-related vector representations. The results of our experiment confirm this assumption, but they also show that this relationship between meaning shift and context change does not always hold: a change in context not always indicates a shift in meaning, and, on the other hand, a shift in meaning does not necessarily imply a change in context of use.
+%\todo[inline]{point 2}
+
+%The general hypothesis is confirmed by the positive correlation (Pearson's $r$= 0.49, $p < 0.001$) existing between cosine distance and semantic shift (see Section \ref{sec:setup}). Such a tendency can be observed in the plot in figure \ref{fig:shift-cosine}. We note that all the words that do not increase in frequency have very low shift index and low cosine distance, meaning that the model reliably identify them as cases of \textit{no} meaning shift. Following the regression line, the parallel increase of shift index and cosine distance confirms the basic assumption whereby meaning shift is reflected in context change. 
+
+Our initial hypothesis, common to previous work, is that meaning shift
+is mirrored by a change in context of usage, which should be captured
+by an increased in cosine distance between the time-related vector
+representations of a word. The results of our experiment confirm this
+hypothesis: We find a positive correlation between cosine distance and
+semantic shift in our dataset (Pearson's $r$= 0.49, $p<0.001$) - see 
+Figure \ref{fig:shift-cosine}.
+% \footnote{As expected, all the words that do not increase in frequency have very low shift index and low cosine distance, meaning that the model reliably identify them as cases of \textit{no} meaning shift. \raq{I moved this to footnote, but I'm actually not convinced by the text: the points to make I guess are: the one with no frequency change have low shift index, this sort of validates our selection method since we had assumed that it would be too difficult to randomly find examples of shift. The other point about the model I'm not sure it actually makes sense here...}}
+% gbt moved to previous section
+
+\begin{figure}[t]\centering
+%\includegraphics[width=\columnwidth]{graph_and_csv/plots/shift-cosine-correlation-plot.png}
+\includegraphics[width=\columnwidth]{images/cosine_distance_shift_index_annotated.png}
+\caption{Semantic shift index vs.~cosine distance for all words in the evaluation dataset (Pearson's $r$ = 0.49, $p< 0.001$). 
+Red ellipsis indicates false positives, blue ellipsis false negatives.
+\label{fig:shift-cosine}}
+\end{figure}
+
+%\raq{Here I would put the highlighter and lean examples; and I would move F5 to supplementary}
+
+Among the words that undergo a strong shift are, for example, `highlighter', which occurs in sentences like \textit{`we are playing with the \textbf{highlighter} today'}, a metonymy used to talk about a kit in a colour similar to that of a highlighter, or `lean', in \textit{`I hope a \textbf{lean} comes soon!'}, due to players typically leaning on a Liverpool symbol when posing for a photo right after signing for the club. Particularly explanatory is the `F5' example shown (in chronological order) in
+Table~\ref{table:f5}.\footnote{The first example is from the June,18th, the last from the September,6th: such a short time span gives the idea of how quick is the meaning shift process considered in this work.} While `F5' is initially used with its common usage of shortcut for refreshing a page (line 1), it then starts to denote the act of refreshing in order to get the lastest news about the possible transfer of a new player to
+LiverpoolFC (line 2). This use catches on and many redditors use it to
+express their tension while waiting for good news (3-5),\footnote{Here the semantic change is accompanied by a change in the part of speech, and `F5' becomes a denominal verb.}
+though not all members are aware of the new meaning of the word
+(6). After the player finally signed for the team, someone leaves the
+`F5 squad' (7), and after a while, another member recalls the period
+in which the word was used (8).
+%\todo{R suggest to move f5 to supplementary. G says no, it's too nice.}
+%\raq{We could move this example to the supplementary material. It's very nice, but it takes a lot of space. We could just say, further examples are availble in the SM}
+%\raq{We observe a negative correlation between cosine similarity and semantic shift index (Pearson's $r$= -0.49, $p < 0.001$) --- so overall the model does capture the general tendency.}
+%\raq{Words with no increase in frequency all have high similarity and a shift index below 0.5  - the model identifies them reliably -- we leave them aside.}
+
+%\raq{Then, I would introduce FP and FP:}
+
+Although the general tendency is in line with our expectations, we
+also find systematic deviations. First, \textit{false positives}, that
+is, words that do not undergo semantic shift despite showing
+relatively large differences in context between $t_1$ and $t_2$ (red ellipsis in
+Figure~\ref{fig:shift-cosine}; shift index=0, cosine distance\textgreater	
+0.25). 
+%\todo{G Redraw red ellipsis to cover fewer datapoints -- maybe  higher than 0.25? Else too close to the 0 x-axis.}
+Manual inspection reveals that most of these ``errors'' 
+%\todo{Add  number (X out of Y)?} 
+are due to a referential effect: words are used
+% \paragraph{False Positives.}
+% The analysis of words in this group reveals that, indeed, they occur
+% in a different context in $t$ 2 compared to  $t$ 1: however, this not
+% due to a meaning shift, but rather to the fact that they are used 
+almost exclusively to refer to a specific person or event, and
+so the context of use is narrowed down with respect to $t_1$.
+%\todo{M:this is dangerous, cause we do not prove this} 
+For instance, `stubborn' is
+almost always used to talk about the coach of the team, who was not
+there in 2013 but only in 2017; 
+%`village', for the village in Africa where one of the new players comes from; 
+`entourage', for the entourage of one of the stars of the team; `independence' for the
+political events of Catalunya. 
+%\todo{do we want to include the example  of `parked'?}. 
+% the target word is temporary
+% narrowing down its context of use to refer to a specific referent, but
+% without a semantic shift.
+In all these cases, the meaning of the word stays the same, despite the change in context. In line with the Distributional Hypothesis, the model spots the change, but it is not sensitive to its nature.
+This is not a problem for long-term shift studies, because embeddings
+are built on a much larger number of occurrences
+% over a long period of time, 
+and this makes them less sensitive to changes of referential
+nature like the one presented here. However, with smaller, community corpora, this problem clearly emerges.
+
+%\raq{To structure this, now I would add two subheadings (with paragraph command) for false positive and false negatives and put the explanations/examples you have below for each of them.}
+
+
+
+\begin{table}[t]\centering   \small
+    \begin{tabular}{cp{7cm}@{}}
+        \hline
+        1. & after losing the F5 key on my keyboard,..\\\hline
+        2. & F5 tapping is so intense now. I want him\\\hline
+        3. & Don't think about it too much, man. Just F5.\\\hline
+        4. & just woke up and thought it was f5 time\\\hline
+        5. & this was a happy f5\\\hline
+        6. & what is an F5? \\\hline
+        %[...] Nope. I didn't even know F5 was the refresh shortcut until this sub\\\hline
+        7. & I'm leaving the f5 squad for now\\\hline
+        8. & I made this during the f5 madness in the sub\\\hline
+        
+    \end{tabular}
+    \vspace*{-0.2cm}
+    \caption{Example of use of `F5'}
+    \vspace*{-0.2cm}
+     \label{table:f5}
+\end{table}
+
+A much smaller, but consistent group is that of \textit{false negatives}, 
+words that undergo semantic shift but are not captured by the model
+(blue ellipsis; shift index\textgreater 0.5, cosine distance\textless 0.25).
+%: `dilly', `shovel', `shovels', `pharaoh'.\todo{M: dont't think list is necessary}
+%\gbt{List the  words here, since they are only 4.}
+%\paragraph{False Negatives.}
+%On the top left of the plot cluster cases that can be considered as
+%\textit{false negatives}, i.e. words that are considered cases of
+%semantic shift by the redditors (high semantic shift index values),
+%but not by the model (low cosine distance). 
+These are cases of \textit{extended}
+metaphor \cite{werth1994extended}, that is, cases in which the metaphor is 
+%not limited to a single word, but it is 
+developed throughout the whole text produced by an author. Also in this case, the model ``is right'', in the sense that indeed
+the local context of the target words does not change in $t_2$.
+ % As a result, the context taken into consideration by the model is indeed the one in which the word normally occurs, and for this reason the model is not able to spot the meaning shift. 
+For instance, `pharaoh' is the nickname of an Egyptian player who
+joined Liverpool in 2017 and is used in
+sentences like \textit{`approved by our new \textbf{Pharaoh}
+  Tutankhamun'}, \textit{'our dear Egyptian \textbf{Pharaoh},
+  let's hope he becomes a God'}, and so on. Similarly, `shovel',  occurs in sentences
+like \textit{`welcome aboard, here is your \textbf{shovel}'},
+\textit{`you boys know how to \textbf{shovel} coal'}: the team is seen as a train that is running through the season, and every supporter is asked to give its contribution, depicted as the act of shoving coal into the train boiler. Despite the metaphoric usage, the local context of these words is similar to the literal one, and so the model does not spot the meaning shift. We expect this to happen in long-term shift models, too, but we are not aware of results confirming this.
+
+%A similar case is `shovel' (and `shovels'), that occurs in sentences
+%like \textit{`welcome aboard, here is your \textbf{shovel}'},
+%\textit{`you boys know how to \textbf{shovel} coal'}, \textit{`shut up
+%  and \textbf{shovel}'}. The team is seen as a train that is running fast
+%through the season, and every supporter is asked to give its
+%contribution, figured as the act of shoving coal into the train
+%boiler. 
+
+\paragraph{Contextual variability.}
+
+%As we have seen, the main issue for distributional models when dealing
+%with short-term shift is the interference of referential aspects in
+%the detection of contextual changes. 
+
+As we have seen, the main issue for distributional models when dealing
+with short-term shift is contextual change due to referential aspects.
+We expect that in referential cases the context of use will be \textit{narrower} than 
+for words with actual semantic shift, because they are specific to one person or event. Hence, using a measure of \textit{contextual variability} should
+help spot false positives. 
+We define contextual variability as follows: for a target word, we create a vector for each of its contexts in $t_2$ by averaging the embeddings of the words  occurring in it, and define variability as the average pairwise cosine distance between context vectors.\footnote{We consider the context as the five words occurring on the left and on the right of the target word.}We then test whether contextual variability has explanatory power over cosine distance by fitting a linear regression model with these two variables as predictors and semantic shift index as dependent variable.\footnote{Contextual variability and cosine distance are not correlated in our data (Pearson's $r$= 0.18,$p> 0.05$). }
+The results indicate that these two aspects are indeed complementary (contextual variability: $\beta$= 0.47, $p< 0.001$, cosine distance: $\beta$= 0.40, $p< 0.001$, adjusted $R^2$=0.44). While both shift words and referential cases change context of use in $t_2$, context variability captures the fact that only in referential cases words occur in a restricted set of contexts. The scatterplot in the supplementary material shows this effect visually. In future work, we plan to investigate more in depth the interplay between variability, cosine and semantic shift, both in short- and long-term meaning shift.
+
+
+%----
+%
+%As we have seen, the main issue for distributional models when dealing
+%with short-term shift is contextual change due to referential cases. 
+%We expect that in these cases the contexts of use will be \textit{narrower} than in the case of semantic shift, because they are specific to one person or
+%event. Hence, using a measure of \textit{contextual variability} should
+%help spot false positives.
+%% \gbt{Explain how   contextual variability is measured; results with both (r square), as   opposed to one factor (see raquel's comment in the file).}  \gbt{I   don't think we have space to discuss this further.} 
+%
+%We define contextual variability as follows: for a target word, we create a vector of each of its contexts in $t_2$ by averaging the embeddings of the words which occur in it, and define variability as the average pairwise cosine distance between context vectors.\footnote{We consider the context as the five words occurring on the left and on the right of the target word.} 
+%We then fit a linear regression model to predict shift index based on cosine distance and contextual variability. 
+%
+%The results confirm that considering contextual variability as a predictor improves prediction of shift index (contextual variability: $\beta$= .47, $p< 0.001$, cosine distance: $\beta$= .40, $p< 0.001$, Adjusted $R^2$=0.44). In particular, while meaning shifts words and referential cases have in common a change of context of use between $t$ 1 and $t$ 2, context variability captures the fact that only in referential cases words occur in a restrict set of contexts. The scatterplot in the supplementary material shows this effect visually. In future work, we plan to investigate more in depth the role of of variability and its interplay with cosine and shift, both in short and long semantic shift.
+
+
+
+%The analysis of the results confirm our initial intuition: while meaning shifts words and false positive have in common a change of context of use between $t$ 1 and $t$ 2, the context variability index computed on $t$ 2 captures the fact that only in the latter case words occur in a restrict set of contexts. 
+
+
