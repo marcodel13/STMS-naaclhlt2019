@@ -150,7 +150,14 @@ they are specific to one person or event. Hence, using a measure of
 positives.
 Here we test this hypothesis. 
 We define contextual variability as follows: for a target word, we create a vector for each of its contexts in $t_2$ by averaging the embeddings of the words  occurring in it, and define variability as the average pairwise cosine distance between context vectors.\footnote{We consider the context as the five words occurring on the left and on the right of the target word.}We then test whether contextual variability has explanatory power over cosine distance by fitting a linear regression model with these two variables as predictors and semantic shift index as dependent variable.\footnote{Contextual variability and cosine distance are not correlated in our data (Pearson's $r$= 0.18,$p> 0.05$). }
-The results indicate that these two aspects are indeed complementary (contextual variability: $\beta$= 0.47, $p< 0.001$, cosine distance: $\beta$= 0.40, $p< 0.001$, adjusted $R^2$=0.44). While both shift words and referential cases change context of use in $t_2$, context variability captures the fact that only in referential cases words occur in a restricted set of contexts. The scatterplot \ref{fig:shift-variability} shows this effect visually. \textcolor{red}{In future work, we plan to investigate more in depth the interplay between variability, cosine and semantic shift, both in short- and long-term meaning shift.}\marco{I'd move this to Conclusions}
+The results indicate that these two aspects are indeed complementary
+(contextual variability: $\beta$= 0.47, $p< 0.001$, cosine distance:
+$\beta$= 0.40, $p< 0.001$, adjusted $R^2$=0.44). While both shift
+words and referential cases change context of use in $t_2$, context
+variability captures the fact that only in referential cases words
+occur in a restricted set of contexts. The scatterplot
+\ref{fig:shift-variability} shows this effect visually. \new{This result can inform future models of short-term meaning
+  shift.} \textcolor{red}{In future work, we plan to investigate more in depth the interplay between variability, cosine and semantic shift, both in short- and long-term meaning shift.}\marco{I'd move this to Conclusions}
 
 \begin{figure}[t]\centering
 %\includegraphics[width=\columnwidth]{graph_and_csv/plots/shift-cosine-correlation-plot.png}
