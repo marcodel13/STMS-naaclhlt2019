@@ -92,12 +92,20 @@ We train with standard skip-gram parameters \cite{levy2015improving}: window 5, 
 %of short term meaning shift. For this reason, we decided to create a
 %dataset for this task and to make it publicly available. 
 %gbt: I put this in the intro, removing it from here.
-The dataset includes approximately 100 words.\gbt{to do: Say exact number} We consider the contexts
-of use in the two time bins of the experiment. Words were annotated as
-positive or negative meaning shift examples by 26 members of the
-r/LiverpoolFC subreddit, that is, community members without linguistic
-background, because domain knowledge is needed for this task.
-The details of the survey are described in Appendix (n). The results of the annotations were used to define a graded \emph{semantic shift index}, an index indicating the degree of meaning shift of each word, ranging from 0 (no shift) to 1 (shift).}
+  The dataset includes approximately 100 words.\gbt{to do: Say exact
+    number}
+They were annotated by 26 members of the r/LiverpoolFC
+subreddit, that is, community members without linguistic background,
+because domain knowledge is needed for this task.  For each word, subjects
+read contexts of use from the two time bins and, for simplicity, were
+asked to make a binary decision
+about whether there was a change in meaning. However, semantic shift
+is arguably a graded notion, so we aggregate the annotations into a
+graded \emph{semantic shift index}, ranging from 0
+(no shift) to 1 (shift) depending on how many subjects spotted
+semantic change. This index is shown in the y-axis of
+Figure~\ref{fig:shift-cosine}. Further methodological details regarding data
+collection are described in Appendix (n). }
 
 
 %\paragraph{Evaluation dataset.} 
