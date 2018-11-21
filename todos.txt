@@ -1,0 +1,15 @@
+todo:
+
+all new/modified parts are in red
+
+- footnote 13: remove and add dates to the table. - DONE: changed caption of table 2
+- add the the number from the rebuttal, reviewer #2 (https://docs.google.com/document/d/1yOt5houIJ936wiZO8uZhhCPiWbWvcuygnDKgLFGqpFI/edit) - DONE
+- rearrange the section 4 so that:
+	- sec 4 will include what is now 'evaluation dataset' plus an evaluation of the annotation, which will basically be the rebuttal to reviewer#3, Q3 - DONE
+	- sec 5 will include the results of the model (like now) but will be more concise in its first part, since the example currently included will be moved to sec 4 (see above). - DONE
+	for the moment, we keep the structure: what goes well (true positives), what goes wrong (false positives/false negatives + examples)
+
+
+- add to conclusions the sentence about sarcarsm
+- mention the thing of the phases - either in the conclusions or elsewhere
+	

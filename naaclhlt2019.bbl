@@ -32,6 +32,13 @@ Marco Del~Tredici and Raquel Fern{\'a}ndez. 2017.
 \newblock In \emph{IWCS 2017-12th International Conference on Computational
   Semantics-Long papers}.
 
+\bibitem[{Del~Tredici and Fern{\'a}ndez(2018)}]{del2018road}
+Marco Del~Tredici and Raquel Fern{\'a}ndez. 2018.
+\newblock The road to success: Assessing the fate of linguistic innovations in
+  online communities.
+\newblock In \emph{COLING 2018-27th International Conference on Computational
+  Linguistics-Long papers}.
+
 \bibitem[{Del~Tredici et~al.(2016)Del~Tredici, Nissim, and
   Zaninello}]{del2016tracing}
 Marco Del~Tredici, Malvina Nissim, and Andrea Zaninello. 2016.
@@ -57,14 +64,6 @@ William~L Hamilton, Jure Leskovec, and Dan Jurafsky. 2016.
 \newblock Diachronic word embeddings reveal statistical laws of semantic
   change.
 \newblock \emph{arXiv preprint arXiv:1605.09096}.
-
-\bibitem[{Hamilton et~al.(2017)Hamilton, Zhang, Danescu-Niculescu-Mizil,
-  Jurafsky, and Leskovec}]{hamilton2017loyalty}
-William~L Hamilton, Justine Zhang, Cristian Danescu-Niculescu-Mizil, Dan
-  Jurafsky, and Jure Leskovec. 2017.
-\newblock Loyalty in online communities.
-\newblock In \emph{Proceedings of the eleventh International Conference on Web
-  and Social Media}.
 
 \bibitem[{Hasan(2009)}]{hasan2009}
 Ruqaiya Hasan. 2009.
