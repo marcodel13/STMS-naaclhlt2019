@@ -12,23 +12,15 @@ representations of a word\new{, in a graded fashion (more semantic
   change, more contextual change)}. The results of our experiment
 support this hypothesis: We find a positive correlation between cosine
 distance and semantic shift in our dataset (Pearson's $r$= 0.49,
-$p<0.001$) -- see Figure \ref{fig:shift-cosine}. \textcolor{red}{This
-  result indicates that the model is indeed able to capture the
-  majority of the cases of semantic shift in our data (see Section
-  \ref{sec:sources}).}  \gbt{to do: link with the ling analysis
-  section: this captures both figurative uses and memes, I assume? One
-  good option: for the examples you talk about in the ling analysis
-  section, give the semantic shift index + cosine distance. My
-  preferred method, cause it's very clear and it doesn't take space, would
-  be to add the words to Figure 1 (e.g. put ``highlighter'' and an
-  arrow pointing to the dot to which it corresponds).}
+$p<0.001$). \textcolor{red}{ This result indicates that the model is indeed able to capture the majority of the cases of semantic shift in our data, as it can be observed in Figure \ref{fig:shift-cosine}, in which the examples presented in Section \ref{sec:sources} are highlighted.}  
+ % \gbt{to do: link with the ling analysis section: this captures both figurative uses and memes, I assume? One good option: for the examples you talk about in the ling analysis section, give the semantic shift index + cosine distance. My preferred method, cause it's very clear and it doesn't take space, would   be to add the words to Figure 1 (e.g. put ``highlighter'' and an   arrow pointing to the dot to which it corresponds).}
 
 \begin{figure}[t]\centering
 %\includegraphics[width=\columnwidth]{graph_and_csv/plots/shift-cosine-correlation-plot.png}
-\includegraphics[width=\columnwidth]{images/cosine_distance_shift_index_annotated.png}
+\includegraphics[width=\columnwidth]{images/cosine_distance_shift_index_annotated_2.png}
 \caption{Semantic shift index vs.~cosine distance for all words in the evaluation dataset (Pearson's $r$ = 0.49, $p< 0.001$). 
 Red ellipsis indicates false positives, blue ellipsis false
-negatives.\gbt{to do: larger font in tick marks and labels}
+negatives.
 \label{fig:shift-cosine}}
 \end{figure}
 
@@ -110,7 +102,7 @@ words that undergo semantic shift but are not captured by the model
 %\textit{false negatives}, i.e. words that are considered cases of
 %semantic shift by the redditors (high semantic shift index values),
 %but not by the model (low cosine distance). 
-\gbt{To do: move this to the ling analysis section, and here only link?}
+\gbt{To do: move this to the ling analysis section, and here only link?} \marco{don't know, I see it more here maybe. Raq?}
 These are cases of \textit{extended}
 metaphor \cite{werth1994extended}, that is, cases in which the metaphor is 
 %not limited to a single word, but it is 
@@ -161,7 +153,7 @@ occur in a restricted set of contexts. The scatterplot
 
 \begin{figure}[t]\centering
 %\includegraphics[width=\columnwidth]{graph_and_csv/plots/shift-cosine-correlation-plot.png}
-\includegraphics[width=\columnwidth]{images/contextual_variability_shift_index_annotated.png}
+\includegraphics[width=\columnwidth]{images/contextual_variability_shift_index_annotated_2.png}
 \caption{Semantic shift index vs.~context variability for all words in the evaluation dataset (Pearson's $r$ = 0.55, $p< 0.001$). Red ellipses indicates the referential cases which are incorrectly assigned high cosine distance values (false positives in the paper).
 \label{fig:shift-variability}}
 \end{figure}
