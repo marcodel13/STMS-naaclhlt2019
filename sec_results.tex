@@ -8,11 +8,13 @@
 Our initial hypothesis, common to previous work, is that meaning shift
 is mirrored by a change in context of usage, which should be captured
 by an increased in cosine distance between the time-related vector
-representations of a word\new{, in a graded fashion (more semantic
-  change, more contextual change)}. The results of our experiment
+representations of a word, in a graded fashion (more semantic
+  change, more contextual change). The results of our experiment
 support this hypothesis: We find a positive correlation between cosine
 distance and semantic shift in our dataset (Pearson's $r$= 0.49,
-$p<0.001$). \textcolor{red}{ This result indicates that the model is indeed able to capture the majority of the cases of semantic shift in our data, as it can be observed in Figure \ref{fig:shift-cosine}, in which the examples presented in Section \ref{sec:sources} are highlighted.}  
+$p<0.001$). In particular, we find that the model captures well shifts related to metonymy and memes. This can be observed in Figure \ref{fig:shift-cosine}, where the examples mentioned throughout the paper are pointed out.\todo{R: plot with examples is really nice! Please if it fits include other examples as well: shovel, pharaoh, independence, stubborn etc. }
+
+%\textcolor{red}{ This result indicates that the model is indeed able to capture the majority of the cases of semantic shift in our data, as it can be observed in Figure \ref{fig:shift-cosine}, in which the examples presented in Section \ref{sec:sources} are highlighted.}  
  % \gbt{to do: link with the ling analysis section: this captures both figurative uses and memes, I assume? One good option: for the examples you talk about in the ling analysis section, give the semantic shift index + cosine distance. My preferred method, cause it's very clear and it doesn't take space, would   be to add the words to Figure 1 (e.g. put ``highlighter'' and an   arrow pointing to the dot to which it corresponds).}
 
 \begin{figure}[t]\centering
@@ -24,110 +26,111 @@ negatives.
 \label{fig:shift-cosine}}
 \end{figure}
 
-%\raq{Here I would put the highlighter and lean examples; and I would move F5 to supplementary}
-
-%\todo{R suggest to move f5 to supplementary. G says no, it's too nice.}
-%\raq{We could move this example to the supplementary material. It's very nice, but it takes a lot of space. We could just say, further examples are availble in the SM}
-%\raq{We observe a negative correlation between cosine similarity and semantic shift index (Pearson's $r$= -0.49, $p < 0.001$) --- so overall the model does capture the general tendency.}
-%\raq{Words with no increase in frequency all have high similarity and a shift index below 0.5  - the model identifies them reliably -- we leave them aside.}
-
-%\raq{Then, I would introduce FP and FP:}
+% RAQ's VERSION
 
 Although the general tendency is in line with our expectations, we
-also find systematic deviations. First, \textit{false positives}, that
+also find systematic deviations. A small, but consistent group is that of \textit{false negatives}: 
+words that undergo semantic shift but are not captured by the model
+(blue ellipsis; shift index\textgreater 0.5, cosine distance\textless 0.25).
+These are all metaphorical shifts. In particular, cases of extended
+metaphor \cite{werth1994extended}, where the metaphor is 
+developed throughout the whole text produced by an author. For instance, besides the {\em `shovel'} example mentioned in Section~\ref{sec:sources}, we find the word `pharaoh' as the nickname of an Egyptian player who
+joined Liverpool in 2017, used in
+sentences like \textit{`approved by our new Pharaoh Tutankhamun'}, or \textit{'our dear Egyptian Pharaoh, let's hope he becomes a God'}.
+Despite the metaphoric usage, the local context of these words is similar to the literal one, and so the model does not spot the meaning shift. We expect this to happen in long-term shift models, too, but we are not aware of results confirming this.
+
+A larger group of problematic cases is that of \textit{false positives}, that
 is, words that do not undergo semantic shift despite showing
 relatively large differences in context between $t_1$ and $t_2$ (red ellipsis in
 Figure~\ref{fig:shift-cosine}; shift index=0, cosine distance\textgreater	
-0.25). 
-%\todo{G Redraw red ellipsis to cover fewer datapoints -- maybe  higher than 0.25? Else too close to the 0 x-axis.}
-Manual inspection reveals that most of these ``errors'' 
-%\todo{Add  number (X out of Y)?} 
+0.25). Manual inspection reveals that most of these ``errors'' 
 are due to a referential effect: words are used
-% \paragraph{False Positives.}
-% The analysis of words in this group reveals that, indeed, they occur
-% in a different context in $t$ 2 compared to  $t$ 1: however, this not
-% due to a meaning shift, but rather to the fact that they are used 
 almost exclusively to refer to a specific person or event, and
 so the context of use is narrowed down with respect to $t_1$.
 %\todo{M:this is dangerous, cause we do not prove this} 
-For instance, `stubborn' is
+For instance, {\em `stubborn'} is
 almost always used to talk about a coach who was not
 there in 2013 but only in 2017; 
-%`village', for the village in Africa where one of the new players comes from; 
-`entourage', for the entourage of one of the stars of the team; `independence' for the
-political events of Catalonia (Spain). 
-%\todo{do we want to include the example  of `parked'?}. 
-% the target word is temporary
-% narrowing down its context of use to refer to a specific referent, but
-% without a semantic shift.
-In all these cases, the meaning of the word stays the same, despite
-the change in context. In line with the Distributional Hypothesis, the model spots the change, but it is not sensitive to its nature.
-Long-term shift is not as sensitive to changes of referential nature
+{\em `entourage'}, for the entourage a particular star of the team; {\em `independence'} for the
+political events in Catalonia (Spain). 
+In all these cases, the meaning of the word stays the same,\todo{R: should we say the *ontological* meaning stays the same?} 
+despite the change in context. In line with the Distributional Hypothesis, the model spots the context change, but it is not sensitive to its nature. Long-term shift is not as susceptible to changes of referential nature
 like these because
 embeddings are aggregated over a larger and more varied number of
 occurrences.
-%However, with small time-scales and in-community semantic shift, this problem clearly emerges.
 
-%\raq{To structure this, now I would add two subheadings (with paragraph command) for false positive and false negatives and put the explanations/examples you have below for each of them.}
-
+%% PREVIOUS VERSION
 
 
-%\begin{table}[t]\centering   \small
-%    \begin{tabular}{cp{5.5cm}l}
-%        \hline
-%        1. & after losing the F5 key on my keyboard... & 18 Jun\\\hline
-%        2. & F5 tapping is so intense now. I want him & 28 Jun\\\hline
-%        3. & Don't think about it too much, man. Just F5 & 1 Jul\\\hline
-%        4. & just woke up and thought it was f5 time & 3 Jul\\\hline
-%        5. & this was a happy f5 & 13 Jul\\\hline
-%        6. & what is an F5? & 13 Jul \\\hline
-%        %[...] Nope. I didn't even know F5 was the refresh shortcut until this sub\\\hline
-%        7. & I'm leaving the f5 squad for now & 5 Aug\\\hline
-%        8. & I made this during the f5 madness in the sub & 6 Sept\\\hline
-%        
-%    \end{tabular}
-%    \vspace*{-0.2cm}
-%    \caption{\textcolor{red}{Examples of use of `F5'. On the third column is the date of the post: the short time span  from the first to the last example gives the idea of how quick is the meaning shift process considered in this work.}}
-%    \vspace*{-0.2cm}
-%     \label{table:f5}
-%\end{table}
-
-A smaller, but consistent group is that of \textit{false negatives}, 
-words that undergo semantic shift but are not captured by the model
-(blue ellipsis; shift index\textgreater 0.5, cosine distance\textless 0.25).
-%: `dilly', `shovel', `shovels', `pharaoh'.\todo{M: dont't think list is necessary}
-%\gbt{List the  words here, since they are only 4.}
-%\paragraph{False Negatives.}
-%On the top left of the plot cluster cases that can be considered as
-%\textit{false negatives}, i.e. words that are considered cases of
-%semantic shift by the redditors (high semantic shift index values),
-%but not by the model (low cosine distance). 
-\gbt{To do: move this to the ling analysis section, and here only link?} \marco{don't know, I see it more here maybe. Raq?}
-These are cases of \textit{extended}
-metaphor \cite{werth1994extended}, that is, cases in which the metaphor is 
-%not limited to a single word, but it is 
-developed throughout the whole text produced by an author. Also in this case, the model ``is right'', in the sense that indeed
-the local context of the target words does not change in $t_2$.
- % As a result, the context taken into consideration by the model is
- % indeed the one in which the word normally occurs, and for this
- % reason the model is not able to spot the meaning shift. 
-For instance, `pharaoh' is the nickname of an Egyptian player who
-joined Liverpool in 2017 and is used in
-sentences like \textit{`approved by our new \textbf{Pharaoh}
-  Tutankhamun'}, \textit{'our dear Egyptian \textbf{Pharaoh},
-  let's hope he becomes a God'}, and so on. Similarly, `shovel',  occurs in sentences
-like \textit{`welcome aboard, here is your \textbf{shovel}'},
-\textit{`you boys know how to \textbf{shovel} coal'}: the team is seen as a train that is running through the season, and every supporter is asked to give its contribution, depicted as the act of shoving coal into the train boiler. Despite the metaphoric usage, the local context of these words is similar to the literal one, and so the model does not spot the meaning shift. We expect this to happen in long-term shift models, too, but we are not aware of results confirming this.
-
-%A similar case is `shovel' (and `shovels'), that occurs in sentences
+%Although the general tendency is in line with our expectations, we
+%also find systematic deviations. First, \textit{false positives}, that
+%is, words that do not undergo semantic shift despite showing
+%relatively large differences in context between $t_1$ and $t_2$ (red ellipsis in
+%Figure~\ref{fig:shift-cosine}; shift index=0, cosine distance\textgreater	
+%0.25). 
+%%\todo{G Redraw red ellipsis to cover fewer datapoints -- maybe  higher than 0.25? Else too close to the 0 x-axis.}
+%Manual inspection reveals that most of these ``errors'' 
+%%\todo{Add  number (X out of Y)?} 
+%are due to a referential effect: words are used
+%% \paragraph{False Positives.}
+%% The analysis of words in this group reveals that, indeed, they occur
+%% in a different context in $t$ 2 compared to  $t$ 1: however, this not
+%% due to a meaning shift, but rather to the fact that they are used 
+%almost exclusively to refer to a specific person or event, and
+%so the context of use is narrowed down with respect to $t_1$.
+%%\todo{M:this is dangerous, cause we do not prove this} 
+%For instance, `stubborn' is
+%almost always used to talk about a coach who was not
+%there in 2013 but only in 2017; 
+%%`village', for the village in Africa where one of the new players comes from; 
+%`entourage', for the entourage of one of the stars of the team; `independence' for the
+%political events of Catalonia (Spain). 
+%%\todo{do we want to include the example  of `parked'?}. 
+%% the target word is temporary
+%% narrowing down its context of use to refer to a specific referent, but
+%% without a semantic shift.
+%In all these cases, the meaning of the word stays the same, despite
+%the change in context. In line with the Distributional Hypothesis, the model spots the change, but it is not sensitive to its nature.
+%Long-term shift is not as sensitive to changes of referential nature
+%like these because
+%embeddings are aggregated over a larger and more varied number of
+%occurrences.
+%%However, with small time-scales and in-community semantic shift, this problem clearly emerges.
+%
+%%\raq{To structure this, now I would add two subheadings (with paragraph command) for false positive and false negatives and put the explanations/examples you have below for each of them.}
+%
+%
+%A smaller, but consistent group is that of \textit{false negatives}, 
+%words that undergo semantic shift but are not captured by the model
+%(blue ellipsis; shift index\textgreater 0.5, cosine distance\textless 0.25).
+%%: `dilly', `shovel', `shovels', `pharaoh'.\todo{M: dont't think list is necessary}
+%%\gbt{List the  words here, since they are only 4.}
+%%\paragraph{False Negatives.}
+%%On the top left of the plot cluster cases that can be considered as
+%%\textit{false negatives}, i.e. words that are considered cases of
+%%semantic shift by the redditors (high semantic shift index values),
+%%but not by the model (low cosine distance). 
+%\gbt{To do: move this to the ling analysis section, and here only link?} \marco{don't know, I see it more here maybe. Raq?}
+%These are cases of \textit{extended}
+%metaphor \cite{werth1994extended}, that is, cases in which the metaphor is 
+%%not limited to a single word, but it is 
+%developed throughout the whole text produced by an author. Also in this case, the model ``is right'', in the sense that indeed
+%the local context of the target words does not change in $t_2$.
+% % As a result, the context taken into consideration by the model is
+% % indeed the one in which the word normally occurs, and for this
+% % reason the model is not able to spot the meaning shift. 
+%For instance, `pharaoh' is the nickname of an Egyptian player who
+%joined Liverpool in 2017 and is used in
+%sentences like \textit{`approved by our new \textbf{Pharaoh}
+%  Tutankhamun'}, \textit{'our dear Egyptian \textbf{Pharaoh},
+%  let's hope he becomes a God'}, and so on. Similarly, `shovel',  occurs in sentences
 %like \textit{`welcome aboard, here is your \textbf{shovel}'},
-%\textit{`you boys know how to \textbf{shovel} coal'}, \textit{`shut up
-%  and \textbf{shovel}'}. The team is seen as a train that is running fast
-%through the season, and every supporter is asked to give its
-%contribution, figured as the act of shoving coal into the train
-%boiler. 
+%\textit{`you boys know how to \textbf{shovel} coal'}: the team is seen as a train that is running through the season, and every supporter is asked to give its contribution, depicted as the act of shoving coal into the train boiler. Despite the metaphoric usage, the local context of these words is similar to the literal one, and so the model does not spot the meaning shift. We expect this to happen in long-term shift models, too, but we are not aware of results confirming this.
+%
 
-\section{Contextual variability.}
+
+
+\section{Contextual variability}
 
 %As we have seen, the main issue for distributional models when dealing
 %with short-term shift is the interference of referential aspects in

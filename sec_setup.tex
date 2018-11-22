@@ -4,7 +4,9 @@
 \paragraph{Data.}
 We exploit user-generated language from an online forum of football fans,
 namely, the r/LiverpoolFC subreddit, one of the many communities hosted
-by the Reddit platform.\footnote{\url{https://www.reddit.com}.}\marco{I would remove this link, it is useless} 
+by the Reddit platform.\footnote{\url{https://www.reddit.com}.}
+%\marco{I would remove this link, it is useless} 
+%\raq{We can consider this at the end.}
 We focus on a short period of eight years, between 2011 and 2017. 
 In order to enable a clearer observation of short-term meaning shift, we define two
 non-consecutive time bins: the first one ($t_1$) contains data from
@@ -47,16 +49,17 @@ updated.
 If at $t_i$ the word is used in the same contexts as in $t_{i-1}$, its embedding will only be marginally updated, whereas a major change in the context of use will lead to a stronger update of the embedding. The model makes embeddings across time bins directly comparable.
 
 %Recall that we want to spot changes that occur between 2013 and 2017 (the latter included). Since training directly on LiverpoolFC$_{13}$ is not possible due to data sparseness, 
-We implement the following steps:\footnote{We implement the model
-using the \texttt{gensim} library.}   
-First, we create word embeddings with the large sample \redd, to obtain meaning
-representations that are community-independent.\footnote{\redd\ embeddings are initialized randomly.} \marco{Useless footnote, we say about the random initialization before}
+We implement the following steps:
+First, we create  randomly initialized word embeddings with the large sample \redd, to obtain meaning
+representations that are community-independent.
+%\footnote{\redd\ embeddings are initialized randomly.} \marco{Useless footnote, we say about the random initialization before}
 We then use these embeddings
 to initialize those in LiverpoolFC$_{13}$, update the vectors on this
 sample, and thus obtain embeddings for time $t_1$. This step
 adapts the general embeddings from \redd\  to the
 LiverpoolFC community. Finally, we
-initialize the word embeddings for LiverpoolFC$_{17}$ with those of $t_1$, train on this sample and get embeddings for $t_2$.
+initialize the word embeddings for LiverpoolFC$_{17}$ with those of $t_1$, train on this sample and get embeddings for $t_2$.\footnote{We implement the model
+using the \texttt{gensim} library.}   
 %To obtain word embeddings for time $t_2$, we
 %initialize the word embeddings for LiverpoolFC$_{17}$ with those of $t_1$, 
 %and train skip-gram further on the
@@ -87,16 +90,16 @@ We train with standard skip-gram parameters \cite{levy2015improving}: window 5, 
 %===== EVALUATION DATASET ===============
 
 \paragraph{Evaluation dataset.} 
-\textcolor{red}{
-%To our knowledge, there are not available dataset for the evaluation
-%of short term meaning shift. For this reason, we decided to create a
-%dataset for this task and to make it publicly available. 
-%gbt: I put this in the intro, removing it from here.
-  The dataset includes approximately 97 words.
-%  \gbt{to do: Say exact number}
-They were annotated by 26 members of the r/LiverpoolFC
-subreddit, that is, community members without linguistic background,
-because domain knowledge is needed for this task.  For each word, subjects
+
+%  The dataset includes approximately 97 words.
+%%  \gbt{to do: Say exact number}
+%They were annotated by 26 members of the r/LiverpoolFC
+%subreddit, that is, community members without linguistic background,
+%because domain knowledge is needed for this task.  
+\todo{R: I've rephrased the beginning here} 
+The dataset includes 97 words, which were annotated by 26 members of the r/LiverpoolFC
+subreddit, that is, community members with domain knowledge (needed for this task) but no linguistic background.
+For each word, subjects
 read contexts of use from the two time bins and, for simplicity, were
 asked to make a binary decision
 about whether there was a change in meaning. However, semantic shift
@@ -105,7 +108,7 @@ graded \emph{semantic shift index}, ranging from 0
 (no shift) to 1 (shift) depending on how many subjects spotted
 semantic change. This index is shown in the y-axis of
 Figure~\ref{fig:shift-cosine}. Further methodological details regarding data
-collection are described in Appendix (n). }
+collection are described in the supplementary material. 
 
 
 %\paragraph{Evaluation dataset.} 
