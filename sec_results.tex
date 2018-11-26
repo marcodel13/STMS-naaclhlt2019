@@ -28,19 +28,23 @@ negatives.
 
 % RAQ's VERSION
 
-Although the general tendency is in line with our expectations, we
-also find systematic deviations. A small, but consistent group is that of \textit{false negatives}: 
+While the general tendency is in line with our expectations, we
+also find systematic deviations. 
+
+\paragraph{False negatives.}
+A small, but consistent group is that of %\textit{false negatives}: 
 words that undergo semantic shift but are not captured by the model
 (blue ellipsis; shift index\textgreater 0.5, cosine distance\textless 0.25).
 These are all metaphorical shifts. In particular, cases of extended
 metaphor \cite{werth1994extended}, where the metaphor is 
-developed throughout the whole text produced by an author. For instance, besides the {\em `shovel'} example mentioned in Section~\ref{sec:sources}, we find the word `pharaoh' as the nickname of an Egyptian player who
+developed throughout the whole text produced by an author. For instance, besides the {\em `shovel'} example mentioned in Section~\ref{sec:types}, we find the word {\em `pharaoh'} as the nickname of an Egyptian player who
 joined Liverpool in 2017, used in
 sentences like \textit{`approved by our new Pharaoh Tutankhamun'}, or \textit{'our dear Egyptian Pharaoh, let's hope he becomes a God'}.
 Despite the metaphoric usage, the local context of these words is similar to the literal one, and so the model does not spot the meaning shift. We expect this to happen in long-term shift models, too, but we are not aware of results confirming this.
 
-A larger group of problematic cases is that of \textit{false positives}, that
-is, words that do not undergo semantic shift despite showing
+\paragraph{False positives.}
+A larger group of problematic cases is that of %\textit{false positives}, that is, 
+words that do not undergo semantic shift despite showing
 relatively large differences in context between $t_1$ and $t_2$ (red ellipsis in
 Figure~\ref{fig:shift-cosine}; shift index=0, cosine distance\textgreater	
 0.25). Manual inspection reveals that most of these ``errors'' 
@@ -51,13 +55,42 @@ so the context of use is narrowed down with respect to $t_1$.
 For instance, {\em `stubborn'} is
 almost always used to talk about a coach who was not
 there in 2013 but only in 2017; 
-{\em `entourage'}, for the entourage a particular star of the team; {\em `independence'} for the
+{\em `entourage'}, for the entourage of a particular star of the team; {\em `independence'} for the
 political events in Catalonia (Spain). 
 In all these cases, the meaning of the word stays the same,\todo{R: should we say the *ontological* meaning stays the same?} 
 despite the change in context. In line with the Distributional Hypothesis, the model spots the context change, but it is not sensitive to its nature. Long-term shift is not as susceptible to changes of referential nature
 like these because
 embeddings are aggregated over a larger and more varied number of
 occurrences.
+
+We expect that in referential cases the context of use will be
+\textit{narrower} than for words with actual semantic shift, because
+they are specific to one person or event. Hence, using a measure of
+\textit{contextual variability} should help spot false
+positives.
+To test this hypothesis, we define contextual variability as follows: for a target word, we create a vector for each of its contexts (consisting of 5 words to the left and to the right of the target) in $t_2$ by averaging the embeddings of the words occurring in it, and define variability as the average pairwise cosine distance between context vectors.
+We find that contextual variability is indeed significantly correlated with semantic shift in our dataset (Person's $r\!=\!0.55$, $p\!<\!0.001$), while it is independent from cosine distance (Pearson's $r$= 0.18,$p> 0.05$). These two aspects are thus complementary. While both shift
+words and referential cases change context of use in $t_2$, context
+variability captures the fact that only in referential cases words
+occur in a restricted set of contexts. The scatterplot in Figure~\ref{fig:shift-variability} 
+shows this effect visually. 
+
+We believe this result can inform future models of short-term meaning
+shift. In future work, we plan to investigate more in depth the interplay between variability, cosine and semantic shift, both in short- and long-term meaning change.
+
+
+\begin{figure}[t]\centering
+%\includegraphics[width=\columnwidth]{graph_and_csv/plots/shift-cosine-correlation-plot.png}
+\includegraphics[width=\columnwidth]{images/contextual_variability_shift_index_annotated_2.png}
+\caption{Semantic shift index vs.~context variability for all words in the evaluation dataset (Pearson's $r$ = 0.55, $p< 0.001$). Red ellipses indicates the referential cases which are assigned high cosine distance values by the model (false positives).
+\label{fig:shift-variability}}
+\end{figure}
+
+
+%
+
+
+
 
 %% PREVIOUS VERSION
 
@@ -130,36 +163,26 @@ occurrences.
 
 
 
-\section{Contextual variability}
+%\section{Contextual variability}
+%
+%From the analysis it emerges that the main issue for distributional models when dealing
+%with short-term shift is contextual change due to referential aspects (false positives).
+%We expect that in referential cases the context of use will be
+%\textit{narrower} than for words with actual semantic shift, because
+%they are specific to one person or event. Hence, using a measure of
+%\textit{contextual variability} should help spot false
+%positives.
+%Here we test this hypothesis. 
+%We define contextual variability as follows: for a target word, we create a vector for each of its contexts in $t_2$ by averaging the embeddings of the words  occurring in it, and define variability as the average pairwise cosine distance between context vectors.\footnote{We consider the context as the five words occurring on the left and on the right of the target word.}We then test whether contextual variability has explanatory power over cosine distance by fitting a linear regression model with these two variables as predictors and semantic shift index as dependent variable.\footnote{Contextual variability and cosine distance are not correlated in our data (Pearson's $r$= 0.18,$p> 0.05$). }
+%The results indicate that these two aspects are indeed complementary
+%(contextual variability: $\beta$= 0.47, $p< 0.001$, cosine distance:
+%$\beta$= 0.40, $p< 0.001$, adjusted $R^2$=0.44). While both shift
+%words and referential cases change context of use in $t_2$, context
+%variability captures the fact that only in referential cases words
+%occur in a restricted set of contexts. The scatterplot
+%\ref{fig:shift-variability} shows this effect visually. \new{This result can inform future models of short-term meaning
+%  shift.} \textcolor{red}{In future work, we plan to investigate more in depth the interplay between variability, cosine and semantic shift, both in short- and long-term meaning shift.}\marco{I'd move this to Conclusions}
 
-%As we have seen, the main issue for distributional models when dealing
-%with short-term shift is the interference of referential aspects in
-%the detection of contextual changes. 
-
-From the analysis it emerges that the main issue for distributional models when dealing
-with short-term shift is contextual change due to referential aspects (false positives).
-We expect that in referential cases the context of use will be
-\textit{narrower} than for words with actual semantic shift, because
-they are specific to one person or event. Hence, using a measure of
-\textit{contextual variability} should help spot false
-positives.
-Here we test this hypothesis. 
-We define contextual variability as follows: for a target word, we create a vector for each of its contexts in $t_2$ by averaging the embeddings of the words  occurring in it, and define variability as the average pairwise cosine distance between context vectors.\footnote{We consider the context as the five words occurring on the left and on the right of the target word.}We then test whether contextual variability has explanatory power over cosine distance by fitting a linear regression model with these two variables as predictors and semantic shift index as dependent variable.\footnote{Contextual variability and cosine distance are not correlated in our data (Pearson's $r$= 0.18,$p> 0.05$). }
-The results indicate that these two aspects are indeed complementary
-(contextual variability: $\beta$= 0.47, $p< 0.001$, cosine distance:
-$\beta$= 0.40, $p< 0.001$, adjusted $R^2$=0.44). While both shift
-words and referential cases change context of use in $t_2$, context
-variability captures the fact that only in referential cases words
-occur in a restricted set of contexts. The scatterplot
-\ref{fig:shift-variability} shows this effect visually. \new{This result can inform future models of short-term meaning
-  shift.} \textcolor{red}{In future work, we plan to investigate more in depth the interplay between variability, cosine and semantic shift, both in short- and long-term meaning shift.}\marco{I'd move this to Conclusions}
-
-\begin{figure}[t]\centering
-%\includegraphics[width=\columnwidth]{graph_and_csv/plots/shift-cosine-correlation-plot.png}
-\includegraphics[width=\columnwidth]{images/contextual_variability_shift_index_annotated_2.png}
-\caption{Semantic shift index vs.~context variability for all words in the evaluation dataset (Pearson's $r$ = 0.55, $p< 0.001$). Red ellipses indicates the referential cases which are incorrectly assigned high cosine distance values (false positives in the paper).
-\label{fig:shift-variability}}
-\end{figure}
 
 
 %%% Local Variables:
