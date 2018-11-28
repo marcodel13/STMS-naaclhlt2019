@@ -1,24 +1,55 @@
-Several methods have been proposed to investigate long-term
-meaning shift: common to all of them is the computation of
-time-related distributional representations for words in the
-vocabulary, and the sequential comparison of such representations in
-order to detect a drop in self-similarity, usually
-interpreted as a shift in meaning.
+Distributional models of semantic change are based on the hypothesis
+that a change in context of use mirrors a change in meaning.
+This in turn stems from the Distributional Hypothesis, that states
+that similarity in meaning results in similarity in context of use \cite{harris1954distributional}.
+Therefore, all models (including ours) spot semantic shift as a change in
+the word representation in different time periods.
+% computation of time-related distributional representations for words
+% in the vocabulary, and the sequential comparison of such
+% representations in order to detect a drop in
+% self-similarity, % usually
+% interpreted as a shift in meaning. 
+% gbt: the previous explanation was a bit cryptic imo (time-related
+% representations, self-similarity, ...)
+This includes classic
+distributional representations obtained with count-based models, topic
+modelling or Latent Semantic Analysis
+\cite{sagi2011tracing,jatowt2014framework,wijaya2011understanding,rohrdantz2011towards,gulordava2011distributional,xu2015computational}
+as well more recent, neural-network based word embeddings
+% as more recent word embeddings computed using the skip-gram
+% algorithm of \newcite{mikolov2013distributed}
+\cite{kulkarni2015statistically,azarbonyad2017words,hamilton2016diachronic,kim2014temporal,del2016tracing,phillips2017intrinsic,szymanski2017temporal}.
+Note, however, that distributional representations from different time periods cannot be
+directly compared. 
+%From the methods to enable comparison that have
+%been proposed in the literature just cited, 
+We adapt the method in \newcite{kim2014temporal} to enable comparison
+(see Section~\ref{sec:setup}).
 
-Among the most widely used techniques are Latent Semantic Analysis
-\cite{sagi2011tracing,jatowt2014framework}, Topic Modeling
-\cite{wijaya2011understanding,rohrdantz2011towards}, and simple
-co-occurence matrices of target words and context terms 
-\cite{gulordava2011distributional,xu2015computational}.
-More recently, researchers have used word embeddings computed using the skip-gram model by \newcite{mikolov2013distributed}. Since embeddings computed in different semantic
-spaces are not directly comparable, time related representations are usually made comparable either by aligning different semantic spaces 
-%through a transformation matrix 
-\cite{kulkarni2015statistically,azarbonyad2017words, hamilton2016diachronic} or by initializing the embeddings at $t_{i+1}$ using those computed at $t_i$ \cite{kim2014temporal, del2016tracing,phillips2017intrinsic,szymanski2017temporal}. We adopt the latter methodology.
+% gbt: shortened this cause we don't need as much detail
+% Among the most widely used techniques are Latent Semantic Analysis
+% \cite{sagi2011tracing,jatowt2014framework}, Topic Modeling
+% \cite{wijaya2011understanding,rohrdantz2011towards}, and simple
+% co-occurence matrices of target words and context terms 
+% \cite{gulordava2011distributional,xu2015computational}.
+% More recently, researchers have used word embeddings computed using the skip-gram model by \newcite{mikolov2013distributed}. Since embeddings computed in different semantic
+% spaces are not directly comparable, time related representations are usually made comparable either by aligning different semantic spaces 
+% %through a transformation matrix 
+% \cite{kulkarni2015statistically,azarbonyad2017words, hamilton2016diachronic} or by initializing the embeddings at $t_{i+1}$ using those computed at $t_i$ \cite{kim2014temporal, del2016tracing,phillips2017intrinsic,szymanski2017temporal}. We adopt the latter methodology.
 
-%Evaluation of semantic shift is difficult, due of the lack of annotated datasets \cite{frermann2016bayesian}. For this reason, evaluation is usually performed by manually inspecting the $n$ words whose representation changes the most according to the model~\cite{hamilton2016diachronic,del2016tracing,kim2014temporal}. In this work, we introduce and make available a small dataset for short-term meaning shift, which allows for a more systematic evaluation and analysis and enables comparison in future studies.
-%\gbt{to do: Remove redundancy with the intro. I put this in the intro cause I think we need to make it more prominent}
-%\marco{I commented out the last paragraph, and slightly modified the one you added at the end of the intro}
+Evaluation of semantic shift is difficult, due of the lack of
+annotated datasets \cite{frermann2016bayesian}. For this reason, even
+for long-term shift evaluation is usually performed by manually
+inspecting the $n$ words whose representation changes the most
+according to the
+model~\cite{hamilton2016diachronic,del2016tracing,kim2014temporal}.
+Our dataset allows for a more systematic evaluation and analysis, and
+enables comparison in future studies.
 
+\todo{Important: pieces missing in the related work, in particular (a)
+  previous work on short term meaning shift outside of CL [mostly
+  theoretical linguistics I guess; difference to us:
+  method?], (b) previous work on meaning in communities (your work?)}
 
 %\raq{I find the last paragraph below a bit boring. The model is not our strong point, so no need to make this prominent. Instead I would highlight that previous work on LTMS is evaluated qualitatively or using judgements by the investigators. Instead, we use judgements by domain experts. }\todo{I agree with the change in emphasis, and also with Marco's remark that he'd like to keep this info. Marco, can you summarize and downplay the part about self-similarity and highlight what Raquel says?}
 % ACL VERSION

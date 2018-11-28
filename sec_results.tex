@@ -5,14 +5,19 @@
 
 %The general hypothesis is confirmed by the positive correlation (Pearson's $r$= 0.49, $p < 0.001$) existing between cosine distance and semantic shift (see Section \ref{sec:setup}). Such a tendency can be observed in the plot in figure \ref{fig:shift-cosine}. We note that all the words that do not increase in frequency have very low shift index and low cosine distance, meaning that the model reliably identify them as cases of \textit{no} meaning shift. Following the regression line, the parallel increase of shift index and cosine distance confirms the basic assumption whereby meaning shift is reflected in context change. 
 
-Our initial hypothesis, common to previous work, is that meaning shift
-is mirrored by a change in context of usage, which should be captured
-by an increased in cosine distance between the time-related vector
-representations of a word, in a graded fashion (more semantic
-  change, more contextual change). The results of our experiment
-support this hypothesis: We find a positive correlation between cosine
-distance and semantic shift in our dataset (Pearson's $r$= 0.49,
-$p<0.001$). In particular, we find that the model captures well shifts related to metonymy and memes. This can be observed in Figure \ref{fig:shift-cosine}, where the examples mentioned throughout the paper are pointed out.
+% Recall from Section~\ref{sect:Related_Work} that the Distributional
+% Hypothesis predicts that a meaning shift will be mirrored in a change
+% in context of usage, in a graded fashion (more semantic change, more
+% contextual change). This should be captured by the cosine distance
+% between the time-related vector representations of a word. The results
+% of our experiment support this hypothesis: We find a positive
+% correlation between cosine distance and semantic shift in our dataset
+% (Pearson's $r$= 0.49, $p<0.001$; see
+% Figure~\ref{fig:shift-cosine}). In particular, we find that the
+% model captures well shifts related to metonymy and memes.
+% This can be
+% observed in Figure \ref{fig:shift-cosine}, where the examples
+% mentioned throughout the paper are pointed out.
 
 %\textcolor{red}{ This result indicates that the model is indeed able to capture the majority of the cases of semantic shift in our data, as it can be observed in Figure \ref{fig:shift-cosine}, in which the examples presented in Section \ref{sec:sources} are highlighted.}  
  % \gbt{to do: link with the ling analysis section: this captures both figurative uses and memes, I assume? One good option: for the examples you talk about in the ling analysis section, give the semantic shift index + cosine distance. My preferred method, cause it's very clear and it doesn't take space, would   be to add the words to Figure 1 (e.g. put ``highlighter'' and an   arrow pointing to the dot to which it corresponds).}
@@ -35,7 +40,7 @@ also find systematic deviations.
 A small, but consistent group is that of %\textit{false negatives}: 
 words that undergo semantic shift but are not captured by the model
 (blue ellipsis; shift index\textgreater 0.5, cosine distance\textless 0.25).
-These are all metaphorical shifts. In particular, cases of extended
+These are all metaphorical shifts; in particular, cases of extended
 metaphor \cite{werth1994extended}, where the metaphor is 
 developed throughout the whole text produced by an author. For instance, besides the {\em `shovel'} example mentioned in Section~\ref{sec:types}, we find the word {\em `pharaoh'} as the nickname of an Egyptian player who
 joined Liverpool in 2017, used in
@@ -44,39 +49,50 @@ Despite the metaphoric usage, the local context of these words is similar to the
 
 \paragraph{False positives.}
 A larger group of problematic cases is that of %\textit{false positives}, that is, 
-words that do not undergo semantic shift despite showing
+words that do \textit{not} undergo semantic shift despite showing
 relatively large differences in context between $t_1$ and $t_2$ (red ellipsis in
 Figure~\ref{fig:shift-cosine}; shift index=0, cosine distance\textgreater	
 0.25). Manual inspection reveals that most of these ``errors'' 
 are due to a referential effect: words are used
 almost exclusively to refer to a specific person or event, and
-so the context of use is narrowed down with respect to $t_1$.
+so the context of use is different from the contexts in $t_1$.
 %\todo{M:this is dangerous, cause we do not prove this} 
 For instance, {\em `stubborn'} is
 almost always used to talk about a coach who was not
 there in 2013 but only in 2017; 
 {\em `entourage'}, for the entourage of a particular star of the team; {\em `independence'} for the
 political events in Catalonia (Spain). 
-In all these cases, the meaning of the word stays the same,%\todo{R: should we say the *ontological* meaning stays the same?} 
-despite the change in context. In line with the Distributional Hypothesis, the model spots the context change, but it is not sensitive to its nature. Long-term shift is not as susceptible to changes of referential nature
+In all these cases, the meaning of the word stays the same, %\todo{R: should we say the *ontological* meaning stays the same?} 
+despite the change in context. In line with the Distributional
+Hypothesis, the model spots the context change, but it is not
+sensitive to its nature. We expect long-term shift to not be as
+susceptible to referential effects 
 like these because
 embeddings are aggregated over a larger and more varied number of
 occurrences.
 
-We expect that in referential cases the context of use will be
-\textit{narrower} than for words with actual semantic shift, because
-they are specific to one person or event. Hence, using a measure of
-\textit{contextual variability} should help spot false
-positives.
-To test this hypothesis, we define contextual variability as follows: for a target word, we create a vector for each of its contexts (consisting of 5 words to the left and to the right of the target) in $t_2$ by averaging the embeddings of the words occurring in it, and define variability as the average pairwise cosine distance between context vectors.
-We find that contextual variability is indeed significantly correlated with semantic shift in our dataset (Person's $r\!=\!0.55$, $p\!<\!0.001$), while it is independent from cosine distance (Pearson's $r$= 0.18,$p> 0.05$). These two aspects are thus complementary. While both shift
+We expect that in referential cases the contexts of use will not
+simply be different, but \textit{narrower} than for words with actual
+semantic shift, because they are specific to one person or
+event. Hence, using a measure of \textit{contextual variability}
+should help spot false positives.  To test this hypothesis, we define
+contextual variability as follows: for a target word, we create a
+vector for each of its contexts (consisting of 5 words to the left and
+to the right of the target) in $t_2$ by averaging the embeddings of
+the words occurring in it, and define variability as the average
+pairwise cosine distance between context vectors.  We find that
+contextual variability is indeed significantly correlated with
+semantic shift in our dataset (Person's $r\!=\!0.55$, $p\!<\!0.001$),
+while it is independent from cosine distance (Pearson's $r$= 0.18,
+$p> 0.05$). These two aspects are thus complementary. While both shift
 words and referential cases change context of use in $t_2$, context
 variability captures the fact that only in referential cases words
-occur in a restricted set of contexts. The scatterplot in Figure~\ref{fig:shift-variability} 
-shows this effect visually. 
-
-We believe this result can inform future models of short-term meaning
-shift. In future work, we plan to investigate more in depth the interplay between variability, cosine and semantic shift, both in short- and long-term meaning change.
+occur in a restricted set of contexts. The scatterplot in
+Figure~\ref{fig:shift-variability} shows this effect visually.  This
+result can inform future computational models of short-term meaning
+shift.
+% gbt: if anything, this should go in the conclusion, but I'd leave it out
+% In future work, we plan to investigate more in depth the interplay between variability, cosine and semantic shift, both in short- and long-term meaning change.
 
 
 \begin{figure}[t]\centering

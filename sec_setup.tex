@@ -7,6 +7,10 @@ namely, the r/LiverpoolFC subreddit, one of the many communities hosted
 by the Reddit platform.\footnote{\url{https://www.reddit.com}.}
 %\marco{I would remove this link, it is useless} 
 %\raq{We can consider this at the end.}
+%\gbt{I'd keep this one, because it enables people to find the reddit
+%platform. I'm instead commenting out the ones on Python
+%packages below -- too low-level technical detail. Consider adding
+%them to the acknowledgements if they're open source (Praw, gensim)}
 We focus on a short period of eight years, between 2011 and 2017. 
 In order to enable a clearer observation of short-term meaning shift, we define two
 non-consecutive time bins: the first one ($t_1$) contains data from
@@ -16,7 +20,10 @@ non-consecutive time bins: the first one ($t_1$) contains data from
   was produced in 2009--2010.}
  We also use a large sample of community-independent language for the
 initialization of the word vectors, namely, a random crawl from Reddit
-in 2013.\footnote{We used the Python package Praw for downloading the data, \url{https://pypi.python.org/pypi/praw}.} Table~\ref{tab:data} shows the size of each sample.
+in 2013.
+%\footnote{We used the Python package Praw for downloading the
+        %data, \url{https://pypi.python.org/pypi/praw}.} 
+Table~\ref{tab:data} shows the size of each sample.
 
 %----- TABLE ----------------------------------------------------
 \begin{table}[t]\small
@@ -58,8 +65,10 @@ to initialize those in LiverpoolFC$_{13}$, update the vectors on this
 sample, and thus obtain embeddings for time $t_1$. This step
 adapts the general embeddings from \redd\  to the
 LiverpoolFC community. Finally, we
-initialize the word embeddings for LiverpoolFC$_{17}$ with those of $t_1$, train on this sample and get embeddings for $t_2$.\footnote{We implement the model
-using the \texttt{gensim} library.}   
+initialize the word embeddings for LiverpoolFC$_{17}$ with those of
+$t_1$, train on this sample and get embeddings for $t_2$.
+%\footnote{We implement the model
+%using the \texttt{gensim} library.}   
 %To obtain word embeddings for time $t_2$, we
 %initialize the word embeddings for LiverpoolFC$_{17}$ with those of $t_1$, 
 %and train skip-gram further on the
@@ -92,15 +101,47 @@ We train with standard skip-gram parameters \cite{levy2015improving}: window 5, 
 
 \paragraph{Evaluation dataset.}
 
-We create a small dataset of words to be annotated by members of the r/LiverpoolFC
-subreddit, that is, community members with domain knowledge (needed for this task) but no linguistic background.
-We initially leverage information about increase in frequency, which has been shown to positively correlate with meaning change \cite{wijaya2011understanding,kulkarni2015statistically}, and sample content words with a significant increase in relative frequency (at least two standard deviations above the mean) between $t_1$ and $t_2$. Frequency increase is not a necessary condition for meaning shift to take place; however, it is a reasonable starting point, as a random selection of words would contain very few positive examples. Our dataset is thus biased towards precision. 
-This procedure yields $\sim$200 words. We then manually identified cases of semantic shift among these words, i.e., changes in the ontological type of what a word denotes (see examples in Section~\ref{sec:types}) by analyzing their contexts of use in the r/LiverpoolFC data. This resulted in 34 words. We added two types of confounders: 33 words with a significant increase in frequency but not marked as meaning shift candidates and 33 words with constant frequency between $t_1$ and $t_2$, included as a sanity check.\footnote{All words have absolute frequency in range [50--500].} 
+Our dataset consists of 97 words from the r/LiverpoolFC subreddit with
+annotations by members of the subreddit ---that is, community members
+with domain knowledge (needed for this task) but no linguistic
+background.
+
+To ensure that we would get enough cases of semantic shift to enable a
+meaningful analysis, we started out from content words that increase
+their relative frequency between $t_1$ and $t_2$.\footnote{Frequency
+  increase has been shown to positively correlate with meaning change
+  \cite{wijaya2011understanding,kulkarni2015statistically}; although
+  it is not a necessary condition, it is a reasonable starting point,
+  as a random selection of words would contain very few positive
+  examples. Our dataset is thus biased towards precision over recall.}
+A threshold of two standard deviations above the mean yielded
+$\sim$200 words. The first author manually identified 34 semantic
+shift candidates among these words by analyzing their contexts of use
+in the r/LiverpoolFC data.  Semantic shift is defined here as a change
+in the ontological type that a word denotes (see examples in
+Section \ref{sec:types}). We added two types of confounders: 33 words
+with a significant increase in frequency but not marked as meaning
+shift candidates, and 33 words with constant frequency between $t_1$
+and $t_2$, included as a sanity check.\footnote{All words have
+  absolute frequency in range [50--500].}
 
 %We then created an online survey, which we posted in the r/LiverpoolFC to recruit participants. 
 The participants were shown the 100 words (in randomized order) together with randomly chosen contexts of usage from each time period ($\mu$=4.7 contexts per word) and, for simplicity, were asked to make a binary decision
-about whether there was a change in meaning. However, semantic shift is arguably a graded notion, so we aggregate the annotations into a graded \emph{semantic shift index}, ranging from 0 (no shift) to 1 (shift) depending on how many subjects spotted semantic change.\footnote{The shift index is exclusively based on the judgements by the redditors, and does not consider the preliminary candidates selection done by us.}  Overall, 26 members of r/LiverpoolFC participated in the survey, and each word received on average 8.8 judgements. The final dataset includes 97 words.\footnote{Three words were discarded: `discord'  and `owls' due to the homonymy with proper names not detected during survey's implementation; `tracking' because the chosen examples clearly mislead the judgements of the redditors.} 
-Further details are in the supplementary material.
+about whether there was a change in meaning. However, semantic shift
+is arguably a graded notion, so we aggregate the annotations into a
+graded \emph{semantic shift index}, ranging from 0 (no shift) to 1
+(shift) depending on how many subjects spotted semantic
+change.\footnote{The shift index is exclusively based on the
+  judgements by the redditors, and does not consider the preliminary
+  candidates selection done by us.}  Overall, 26 members of
+r/LiverpoolFC participated in the survey, and each word received on
+average 8.8 judgements. Three words were discarded after analysis of
+the redditor data.\footnote{The words are: `discord'  and `owls' due to the homonymy with proper names not detected during survey's implementation; `tracking' because the chosen examples clearly mislead the judgements of the redditors.} 
+Further details, including the instructions to participants, are in
+the supplementary material.
+\todo{Marco: please add all the remaining
+  info (including the mean + sd of semantic shift for the 3 cats) to
+  supplementary material}
 
 
 %*** SHORT VERSION***
