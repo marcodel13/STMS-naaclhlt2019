@@ -1,4 +1,3 @@
-
 % === DATA ==============
 
 \paragraph{Data.}
@@ -40,26 +39,20 @@ LiverpoolFC$_{17}$ & 2017 & 11.9\\ \hline
 \end{table}
 %----- END TABLE -----------------------------------------
 
-
-
 %=== MODEL ==========
 
 \paragraph{Model.}
-%We adapt the methodology introduced by 
-%, which in turn builds on the skip-gram architecture by \newcite{mikolov2013distributed}
+
 In the method proposed by \newcite{kim2014temporal}, word
 embeddings for the first time bin $t_1$ are initialized randomly; then,
 given a sequence of time-related samples, embeddings for $t_i$
 are initialized using the embeddings of $t_{i-1}$ and further
 updated. 
-%with the standard skip-gram architecture.
 If at $t_i$ the word is used in the same contexts as in $t_{i-1}$, its embedding will only be marginally updated, whereas a major change in the context of use will lead to a stronger update of the embedding. The model makes embeddings across time bins directly comparable.
 
-%Recall that we want to spot changes that occur between 2013 and 2017 (the latter included). Since training directly on LiverpoolFC$_{13}$ is not possible due to data sparseness, 
 We implement the following steps:
 First, we create  randomly initialized word embeddings with the large sample \redd, to obtain meaning
 representations that are community-independent.
-%\footnote{\redd\ embeddings are initialized randomly.} \marco{Useless footnote, we say about the random initialization before}
 We then use these embeddings
 to initialize those in LiverpoolFC$_{13}$, update the vectors on this
 sample, and thus obtain embeddings for time $t_1$. This step
@@ -95,7 +88,6 @@ that community.
 %Analogous reasoning applies to LiverpoolFC$_{17}$. 
 We train with standard skip-gram parameters \cite{levy2015improving}: window 5, learning rate 0.01, embedding dimension 200, hierarchical softmax.
 
-
 %===== EVALUATION DATASET ===============
 
 
@@ -124,8 +116,7 @@ with a significant increase in frequency but not marked as meaning
 shift candidates, and 33 words with constant frequency between $t_1$
 and $t_2$, included as a sanity check.\footnote{All words have
   absolute frequency in range [50--500].}
-
-%We then created an online survey, which we posted in the r/LiverpoolFC to recruit participants. 
+  %We then created an online survey, which we posted in the r/LiverpoolFC to recruit participants. 
 The participants were shown the 100 words (in randomized order) together with randomly chosen contexts of usage from each time period ($\mu$=4.7 contexts per word) and, for simplicity, were asked to make a binary decision
 about whether there was a change in meaning. However, semantic shift
 is arguably a graded notion, so we aggregate the annotations into a
@@ -142,6 +133,7 @@ the supplementary material.
 \todo{Marco: please add all the remaining
   info (including the mean + sd of semantic shift for the 3 cats) to
   supplementary material}
+ \todo{the info about Krippendorff's alpha has to be added to the suppl/ met too, right?}
 
 
 %*** SHORT VERSION***

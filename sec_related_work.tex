@@ -2,29 +2,22 @@ Distributional models of semantic change are based on the hypothesis
 that a change in context of use mirrors a change in meaning.
 This in turn stems from the Distributional Hypothesis, that states
 that similarity in meaning results in similarity in context of use \cite{harris1954distributional}.
-Therefore, all models (including ours) spot semantic shift as a change in
-the word representation in different time periods.
-% computation of time-related distributional representations for words
-% in the vocabulary, and the sequential comparison of such
-% representations in order to detect a drop in
-% self-similarity, % usually
-% interpreted as a shift in meaning. 
-% gbt: the previous explanation was a bit cryptic imo (time-related
-% representations, self-similarity, ...)
-This includes classic
-distributional representations obtained with count-based models, topic
+Therefore, all models (including ours) spot semantic shift as a change in the word representation in different time periods.
+This includes classic distributional representations obtained with count-based models, topic
 modelling or Latent Semantic Analysis
-\cite{sagi2011tracing,jatowt2014framework,wijaya2011understanding,rohrdantz2011towards,gulordava2011distributional,xu2015computational}
+\cite{sagi2011tracing,jatowt2014framework,wijaya2011understanding,gulordava2011distributional}
 as well more recent, neural-network based word embeddings
-% as more recent word embeddings computed using the skip-gram
-% algorithm of \newcite{mikolov2013distributed}
-\cite{kulkarni2015statistically,azarbonyad2017words,hamilton2016diachronic,kim2014temporal,del2016tracing,phillips2017intrinsic,szymanski2017temporal}.
-Note, however, that distributional representations from different time periods cannot be
-directly compared. 
-%From the methods to enable comparison that have
-%been proposed in the literature just cited, 
+\cite{kulkarni2015statistically,azarbonyad2017words,hamilton2016diachronic,kim2014temporal,del2016tracing}.
+Note, however, that distributional representations from different time periods cannot be directly compared. 
 We adapt the method in \newcite{kim2014temporal} to enable comparison
 (see Section~\ref{sec:setup}).
+
+Evaluation of semantic shift is difficult, due of the lack of
+annotated datasets \cite{frermann2016bayesian}. For this reason, even for long-term shift evaluation is usually performed by manually
+inspecting the $n$ words whose representation changes the most
+according to the model~\cite{hamilton2016diachronic,del2016tracing,kim2014temporal}.
+Our dataset allows for a more systematic evaluation and analysis, and
+enables comparison in future studies.
 
 % gbt: shortened this cause we don't need as much detail
 % Among the most widely used techniques are Latent Semantic Analysis
@@ -37,27 +30,27 @@ We adapt the method in \newcite{kim2014temporal} to enable comparison
 % %through a transformation matrix 
 % \cite{kulkarni2015statistically,azarbonyad2017words, hamilton2016diachronic} or by initializing the embeddings at $t_{i+1}$ using those computed at $t_i$ \cite{kim2014temporal, del2016tracing,phillips2017intrinsic,szymanski2017temporal}. We adopt the latter methodology.
 
-Evaluation of semantic shift is difficult, due of the lack of
-annotated datasets \cite{frermann2016bayesian}. For this reason, even
-for long-term shift evaluation is usually performed by manually
-inspecting the $n$ words whose representation changes the most
-according to the
-model~\cite{hamilton2016diachronic,del2016tracing,kim2014temporal}.
-Our dataset allows for a more systematic evaluation and analysis, and
-enables comparison in future studies.
+% b) previous work on meaning in communities
+\marco{Language variation in online communities has recently gained attention in NLP. Researchers have investigated the adoption and spread of neologisms and new words meanings~\cite{del2017semantic,del2018road,stewart2018making}, the competition of different lexical variants \cite{rotabi2017competition} and how the adoption of the linguistic conventions of a community is related to the social standing of the users within it \cite{danescu2013no}. While providing useful insights on language variation process, none of these works analyzed the performance of distributional models on it, which it is what we do in this paper.} 
+
+% a) previous work on short term meaning shift outside of CL
+\marco{Finally, we root our work in traditional studies from related fields such as sociolinguistics and psycholinguistics. In particular, our work is connected to the notion of of `communal common ground', defined as a set of meaning conventions developed in communities of sepakers \cite{Clark96}, and the one of `communities of practice' \cite{wenger1998communities,eckert-mcconnellginet1992}, used to indicate groups of individuals bound together by a common endeavour, and in which the sharing of common linguistic conventions is a key aspect for the construction of the group identity.}
+
 
 \todo{Important: pieces missing in the related work, in particular (a)
   previous work on short term meaning shift outside of CL [mostly
   theoretical linguistics I guess; difference to us:
   method?], (b) previous work on meaning in communities (your work?)}
 
-%\raq{I find the last paragraph below a bit boring. The model is not our strong point, so no need to make this prominent. Instead I would highlight that previous work on LTMS is evaluated qualitatively or using judgements by the investigators. Instead, we use judgements by domain experts. }\todo{I agree with the change in emphasis, and also with Marco's remark that he'd like to keep this info. Marco, can you summarize and downplay the part about self-similarity and highlight what Raquel says?}
-% ACL VERSION
-%It is not straightforward to compute self-similarity across time with neural-based representations, since, due to the stochastic nature of the process, the embeddings computed in different semantic spaces are not directly comparable. Two main solutions have been proposed in the literature. The first consists in computing the embeddings separately for each time bin and then aligning different semantic spaces through a transformation matrix, that can be learned either employing linear regression \cite{kulkarni2015statistically,azarbonyad2017words} or orthogonal Procrustes \cite{hamilton2016diachronic}. The second type of solution,  introduced by \newcite{kim2014temporal}, is based on initializing new embeddings with existing embeddings. This methodology has been adopted in several recent diachronic studies\cite{del2016tracing,phillips2017intrinsic,szymanski2017temporal}, and we also adapt it for our purposes here.
-
+\todo{I added a and b (in reverse order, b-a). However, I think a probably does not fit, and I would remove it.}
 
 
 %####################################################
+% OLD STUFF
+%####################################################
+%\raq{I find the last paragraph below a bit boring. The model is not our strong point, so no need to make this prominent. Instead I would highlight that previous work on LTMS is evaluated qualitatively or using judgements by the investigators. Instead, we use judgements by domain experts. }\todo{I agree with the change in emphasis, and also with Marco's remark that he'd like to keep this info. Marco, can you summarize and downplay the part about self-similarity and highlight what Raquel says?}
+% ACL VERSION
+%It is not straightforward to compute self-similarity across time with neural-based representations, since, due to the stochastic nature of the process, the embeddings computed in different semantic spaces are not directly comparable. Two main solutions have been proposed in the literature. The first consists in computing the embeddings separately for each time bin and then aligning different semantic spaces through a transformation matrix, that can be learned either employing linear regression \cite{kulkarni2015statistically,azarbonyad2017words} or orthogonal Procrustes \cite{hamilton2016diachronic}. The second type of solution,  introduced by \newcite{kim2014temporal}, is based on initializing new embeddings with existing embeddings. This methodology has been adopted in several recent diachronic studies\cite{del2016tracing,phillips2017intrinsic,szymanski2017temporal}, and we also adapt it for our purposes here.
 
 
 %\gbt{Shouldn't you also cite your own previous work on meaning shift
