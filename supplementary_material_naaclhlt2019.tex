@@ -51,7 +51,9 @@
 
 \newcommand\BibTeX{B{\sc ib}\TeX}
 
-\title{Short-term meaning shift: an exploratory distributional analysis}
+\title{Short-term meaning shift: an exploratory distributional analysis\\
+\vspace*{0.5cm}
+Supplementary Material}
 
 \author{First Author \\
   Affiliation / Address line 1 \\
@@ -70,20 +72,46 @@
 \maketitle
 %============================
 
+%% first page
+%
+%\begin{minipage}{15cm}
+%Included in this file are the following supplementary materials:
+%\begin{itemize}
+%\item Pages 2: details of the survey.
+%\item Pages 3--5: the survey instructions provided to the redditors.
+%\item Page 6: the scatterplot representing the correlation between contextual variability and semantic shift.
+%
+%\end{itemize}
+%
+%\end{minipage}
+%
+%\pagebreak
+%\clearpage
+
+%============================
+
 % first page
 
-\begin{minipage}{15cm}
-Included in this file are the following supplementary materials:
-\begin{itemize}
-\item Pages 2: details of the survey.
-\item Pages 3--5: the survey instructions provided to the redditors.
-\item Page 6: the scatterplot representing the correlation between contextual variability and semantic shift.
+\section{Further details on Data and Model}
+We downloaded Reddit data using the Python package Praw: \url{https://pypi.python.org/pypi/praw/}.
 
-\end{itemize}
+The model was implemented using the Python package Gensim: \url{https://pypi.python.org/pypi/gensim/}.
 
-\end{minipage}
+\section{Further details on Evaluation Dataset}
 
-\pagebreak
+For our experiment, we considered content words only, which we identified by using the external list of common words available at \url{https://www.wordfrequency.info/free.asp}.
+
+As detailed in the main paper, 26 members of r/LiverpoolFC participated in the survey, and each word received on average 8.8 judgements. We computed inter-annotator agreement as Krippendorff's alpha, and obtained $\alpha$ = 0.58, a relatively low value but common in semantic tasks \cite{artstein2008inter}.
+
+The survey included 3 main groups of words:  
+(1) words with no frequency increase between $t_1$ and $t_2$; 
+(2) words marked as semantic shift candidates by the authors; 
+(3) words with a significant increase in frequency but not marked as meaning
+shift candidates.
+The analysis of the shift index based on redditors' annotation shows that words in group 1 have an average shift index of 0.07 ($\pm$ 0.12) - a result which validates our data selection method. For words belonging to group 2 the average shift index is 0.72 ($\pm$ 0.15), while for those in group 3 is 0.15 ($\pm$ 0.16).
+
+
+%\pagebreak
 \clearpage
 
 %============================
@@ -91,31 +119,9 @@ Included in this file are the following supplementary materials:
 % table for section 5.2
 \begin{minipage}{15cm}
 
-\textbf{Details of the survey}
+\textbf{Survey's Instructions}. Below the instructions provided to the participants in the survey.
 
-\begin{itemize}
-\item The survey included 100 words: 34 marked as semantic shift candidates by the authors, 33 words
-with a significant increase in frequency but not marked as meaning
-shift candidates, and 33 words with constant frequency between $t_1$
-and $t_2$.
-\item 26 members of r/LiverpoolFC participated in the survey. Each of them was shown the 100 target words (in randomized order).
-\item Each word received on average 8.8 judgements.
-\item Inter-annotator agreement, computed as Krippendorff's alpha, is $\alpha$ = 0.58 - a relatively low value but common in semantic tasks \cite{artstein2008inter}. \textcolor{red}{what to do with this ref?}
-\item Shift index for words with no frequency increase in $t_2$ is lower than 0.5 (average=0.07 $\pm$ 0.12), which validates our data selection method. For words labeled by the first author as potential shift, the average shift index is 0.72 $\pm$ 0.15, for words which increase in frequency 0.15 $\pm$ 0.16.
-\end{itemize}
-
-
-
-\end{minipage}
-
-\pagebreak
-
-\clearpage
-
-%============================
-
-% table for section 5.2
-\begin{minipage}{15cm}
+\vspace*{0.5cm}
 
 \paragraph{What is this about?}
 Words can acquire new meanings in short periods of time. Think about the word `insane': until recently, it was only used in a negative way to say someone or something was mad. In the last couple of years, it has flipped its sense, and you can find it in sentences like: `Salah scored an insane goal', meaning that the goal was amazing.
@@ -315,26 +321,26 @@ In this case, no change would be appropriate. In the posts from 2011-13 and in p
 
 %============================
 
-\begin{minipage}{15cm}
-
-\textcolor{red}{REMOVE THIS IF YOU LEAVE IT IN THE MAIN PAPER}
-
-%\begin{figure}%[t]\centering
-%\includegraphics[width=\columnwidth]{graph_and_csv/plots/shift-cosine-correlation-plot.png}
-\includegraphics[width=\columnwidth]{images/contextual_variability_shift_index_annotated.png}
-
-\vspace*{0.25cm}
-
-Semantic shift index vs.~context variability for all words in the evaluation dataset (Pearson's $r$ = 0.55, $p< 0.001$). Red ellipses indicates the referential cases which are incorrectly assigned high cosine distance values (false positives in the paper).
-%\label{fig:shift-variability}}
-%\end{figure}
-
-
-\end{minipage}
-
-\pagebreak
-
-\clearpage
+%\begin{minipage}{15cm}
+%
+%\textcolor{red}{REMOVE THIS IF YOU LEAVE IT IN THE MAIN PAPER}
+%
+%%\begin{figure}%[t]\centering
+%%\includegraphics[width=\columnwidth]{graph_and_csv/plots/shift-cosine-correlation-plot.png}
+%\includegraphics[width=\columnwidth]{images/contextual_variability_shift_index_annotated.png}
+%
+%\vspace*{0.25cm}
+%
+%Semantic shift index vs.~context variability for all words in the evaluation dataset (Pearson's $r$ = 0.55, $p< 0.001$). Red ellipses indicates the referential cases which are incorrectly assigned high cosine distance values (false positives in the paper).
+%%\label{fig:shift-variability}}
+%%\end{figure}
+%
+%
+%\end{minipage}
+%
+%\pagebreak
+%
+%\clearpage
 
 \bibliography{naaclhlt2019}
 \bibliographystyle{acl_natbib}
