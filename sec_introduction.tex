@@ -1,23 +1,23 @@
-Semantic change has received increasing attention in empirical Computational Linguistics / NLP in the last few years \cite{tang2018state,KutuzovEtal-coling2018}. Almost all studies so far have focused on meaning shift in long periods of time --decades to centuries. However, the genesis of meaning shift and the mechanisms that produce it operate at much shorter time spans, ranging
-from the online agreement on words meaning in dyadic interactions \cite{brennan1996conceptual} to the rapid spread of new meanings in relatively small communities of people \cite{wenger1998communities,eckert-mcconnellginet1992}.
+Semantic change has received increasing attention in empirical Computational Linguistics / NLP in the last few years \cite{tang2018state,KutuzovEtal-coling2018}. Almost all studies so far have focused on meaning shift in long periods of time---decades to centuries. However, the genesis of meaning shift and the mechanisms that produce it operate at much shorter time spans, ranging
+from the online agreement on words' meaning in dyadic interactions \cite{brennan1996conceptual} to the rapid spread of new meanings in relatively small communities of people \cite{wenger1998communities,eckert-mcconnellginet1992}.
 This paper is, to the best of our knowledge, the first exploration of the latter phenomenon---which we call \textit{short-term meaning shift}---using distributional representations.
 
 Short-term shift is usually hard to observe in standard language, such
 as the language of books or news, which has been the focus of
-long-term studies \cite[e.g.,][]{hamilton2016diachronic,kulkarni2015statistically}, since
+long-term shift studies \cite[e.g.,][]{hamilton2016diachronic,kulkarni2015statistically}, since
 it takes a long time for a new meaning to be widely accepted in the standard language. 
 We therefore focus on the language produced in an online community of speakers, in which the 
 adoption of new meanings happens at a much faster pace \cite{Clark96,hasan2009}.
 
-\new{Our contribution is twofold. First, we create a small dataset of short-term shift for analysis and evaluation.\footnote{Data and code will be made available upon
+Our contribution is twofold. First, we create a small dataset of short-term shift for analysis and evaluation.\footnote{Data and code will be made available upon
 publication.} This is necessary because, unlike studies of long-term shift, we cannot rely on material previously gathered by linguists or lexicographers.
 % A qualitative analysis suggests that metonymy, metaphor, and memes are the main sources of shift in our data.
 Second, we test the behavior of a standard distributional model of semantic change when
  applied to short-term shift. 
 % This kind of model is based on the hypothesis that a change in context of use mirrors a change in meaning.
-Our results show that this model successfully detects most shifts in our data, but that it overgeneralizes. Specifically, the model gets confused with contextual changes due to speakers in the community often talking about particular people and events ---something intrinsic to short-term shift. We propose to use a measure of contextual variability to remedy this and showcase its potential to spot false positives of referential nature like these.}
+Our results show that this model successfully detects most shifts in our data, but that it overgeneralizes. Specifically, the model gets confused with contextual changes due to speakers in the community often talking about particular people and events---something intrinsic to short-term shift. We propose to use a measure of contextual variability to remedy this and showcase its potential to spot false positives of referential nature like these.
 
-\new{We thus make progress in understanding the nature of semantic shift and towards improving computational models thereof.}
+We thus make progress in understanding the nature of semantic shift and towards improving computational models thereof.
 
 % \marco{but
 % also that, on the one hand, a change in context of use - as measured
