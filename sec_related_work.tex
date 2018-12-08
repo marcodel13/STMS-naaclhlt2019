@@ -7,14 +7,18 @@ This includes classic distributional representations obtained with count-based m
 modelling or Latent Semantic Analysis
 \cite{sagi2011tracing,jatowt2014framework,wijaya2011understanding,gulordava2011distributional}
 as well as more recent, neural-network based word embeddings
-\cite{kulkarni2015statistically,azarbonyad2017words,hamilton2016diachronic,kim2014temporal,del2016tracing}.
+\cite{kim2014temporal,kulkarni2015statistically,hamilton2016diachronic,azarbonyad2017words,szymanski2017temporal,yao2018dynamic} %,del2016tracing}.
 Note, however, that distributional representations from different time periods 
 are not easily comparable.
 We adapt the method by \newcite{kim2014temporal} to enable comparison
 (see Section~\ref{sec:setup}).
-\marco{While initial works focused on large periods (centuries), recently shorter time spans (decades) have been investigated \cite{szymanski2017temporal, yao2018dynamic}. However, the time span of these studies is still significantly larger than the one we consider here. Furthermore, these studies analyse data coming from newspapers, while we focus on language produced in an online community.}
-%\gbt{This is in contradiction with what we say in the intro -- we say there ``This paper is, to the best of our knowledge, the first exploration of the latter phenomenon—which we call short-term meaning shift—using distributional representations.'' Make consistent, please. Also, is the genre the only difference? (what about models or findings?)}
-Recent work has exploited language in social communities to investigate the adoption and spread of neologisms and new word meanings~\cite{del2017semantic,del2018road,stewart2018making}, the competition of different lexical variants \cite{rotabi2017competition}, and how the adoption of community conventions relates to the social standing of community members \cite{danescu2013no}. While providing insights on language variation, none of these works analyzed the ability of a distributional model to capture these phenomena, which is what we do in this paper for short-term meaning shift. 
+
+Unlike previous work, we focus on the language of social communities.
+Recent studies of this type of language have investigate the spread of new forms and meanings~\cite{del2017semantic,del2018road,stewart2018making}, 
+competing lexical variants \cite{rotabi2017competition}, and the relation between conventions in a community and 
+the social standing of its members \cite{danescu2013no}. 
+None of these works has analyzed the ability of a distributional model to capture these phenomena, 
+which is what we do in this paper for short-term meaning shift. 
 
 Evaluation of semantic shift is difficult, due to the lack of
 annotated datasets \cite{frermann2016bayesian}. For this reason, even for long-term shift, evaluation is usually performed by manually
@@ -22,6 +26,18 @@ inspecting the $n$ words whose representation changes the most
 according to the model under investigation~\cite{hamilton2016diachronic,del2016tracing,kim2014temporal}.
 Our dataset allows for a more systematic evaluation and analysis, and
 enables comparison in future studies.
+
+%% RAQ: Previous version
+%\marco{While initial works focused on large periods (centuries), recently shorter time spans (decades) have been investigated \cite{szymanski2017temporal, yao2018dynamic}. However, the time span of these studies is still significantly larger than the one we consider here. Furthermore, these studies analyse data coming from newspapers, while we focus on language produced in an online community.}
+%%\gbt{This is in contradiction with what we say in the intro -- we say there ``This paper is, to the best of our knowledge, the first exploration of the latter phenomenon—which we call short-term meaning shift—using distributional representations.'' Make consistent, please. Also, is the genre the only difference? (what about models or findings?)}
+%Recent work has exploited language in social communities to investigate the adoption and spread of neologisms and new word meanings~\cite{del2017semantic,del2018road,stewart2018making}, the competition of different lexical variants \cite{rotabi2017competition}, and how the adoption of community conventions relates to the social standing of community members \cite{danescu2013no}. While providing insights on language variation, none of these works analyzed the ability of a distributional model to capture these phenomena, which is what we do in this paper for short-term meaning shift. 
+%
+%Evaluation of semantic shift is difficult, due to the lack of
+%annotated datasets \cite{frermann2016bayesian}. For this reason, even for long-term shift, evaluation is usually performed by manually
+%inspecting the $n$ words whose representation changes the most
+%according to the model under investigation~\cite{hamilton2016diachronic,del2016tracing,kim2014temporal}.
+%Our dataset allows for a more systematic evaluation and analysis, and
+%enables comparison in future studies.
 
 
 

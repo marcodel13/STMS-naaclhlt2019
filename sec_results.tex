@@ -22,16 +22,24 @@
 %\textcolor{red}{ This result indicates that the model is indeed able to capture the majority of the cases of semantic shift in our data, as it can be observed in Figure \ref{fig:shift-cosine}, in which the examples presented in Section \ref{sec:sources} are highlighted.}  
  % \gbt{to do: link with the ling analysis section: this captures both figurative uses and memes, I assume? One good option: for the examples you talk about in the ling analysis section, give the semantic shift index + cosine distance. My preferred method, cause it's very clear and it doesn't take space, would   be to add the words to Figure 1 (e.g. put ``highlighter'' and an   arrow pointing to the dot to which it corresponds).}
 
-\begin{figure}[t]\centering
-%\includegraphics[width=\columnwidth]{graph_and_csv/plots/shift-cosine-correlation-plot.png}
-\includegraphics[width=\columnwidth]{images/cosine_distance_shift_index_annotated_3.png}
-\caption{Semantic shift index vs.~cosine distance for all words in the evaluation dataset (Pearson's $r$ = 0.49, $p< 0.001$). 
-Red ellipsis indicates false positives, blue ellipsis false
-negatives.
-\label{fig:shift-cosine}}
-\end{figure}
+%\begin{figure}[t]\centering
+%%\includegraphics[width=\columnwidth]{graph_and_csv/plots/shift-cosine-correlation-plot.png}
+%\includegraphics[width=\columnwidth]{images/cosine_distance_shift_index_annotated_3.png}
+%\caption{Semantic shift index vs.~cosine distance for all words in the evaluation dataset (Pearson's $r$ = 0.49, $p< 0.001$). 
+%Red ellipsis indicates false positives, blue ellipsis false
+%negatives.
+%\label{fig:shift-cosine}}
+%\end{figure}
 
 % RAQ's VERSION
+
+\begin{figure}[t]\centering
+\includegraphics[width=\columnwidth]{images/cosine_distance_shift_index_annotated_3.png}
+\caption{Semantic shift index vs.~cosine distance in the evaluation dataset (Pearson's $r$ = 0.49, $p< 0.001$). 
+Red ellipsis:~false positives; blue ellipsis:~false negatives.
+\label{fig:shift-cosine}}
+\vspace*{-5pt}
+\end{figure}
 
 While the general tendency is in line with our expectations, we
 also find systematic deviations. 
@@ -39,7 +47,7 @@ also find systematic deviations.
 \paragraph{False negatives.}
 A small, but consistent group is that of %\textit{false negatives}: 
 words that undergo semantic shift but are not captured by the model
-(blue ellipsis; shift index\textgreater 0.5, cosine distance\textless 0.25).
+(blue ellipsis Figure~\ref{fig:shift-cosine}; shift index\textgreater 0.5, cosine distance\textless 0.25).
 These are all metaphorical shifts; in particular, cases of extended
 metaphor \cite{werth1994extended}, where the metaphor is 
 developed throughout the whole text produced by an author. For instance, besides the {\em `shovel'} example mentioned in Section~\ref{sec:types}, we find the word {\em `pharaoh'} as the nickname of an Egyptian player who
@@ -94,13 +102,20 @@ shift.
 % gbt: if anything, this should go in the conclusion, but I'd leave it out
 % In future work, we plan to investigate more in depth the interplay between variability, cosine and semantic shift, both in short- and long-term meaning change.
 
-
-\begin{figure}[t]\centering
-%\includegraphics[width=\columnwidth]{graph_and_csv/plots/shift-cosine-correlation-plot.png}
-\includegraphics[width=\columnwidth]{images/contextual_variability_shift_index_annotated_2.png}
-\caption{Semantic shift index vs.~context variability for all words in the evaluation dataset (Pearson's $r$ = 0.55, $p< 0.001$). Red ellipses indicates the referential cases which are assigned high cosine distance values by the model (false positives).
-\label{fig:shift-variability}}
+\begin{figure}[h!]\centering
+\includegraphics[height=4.3cm]{images/contextual_variability_shift_index_annotated_2.png}
+\vspace*{-2pt}
+\caption{Semantic shift index vs.~context variability. Red ellipses: referential cases which are assigned high cosine distance values by the model (false positives).\label{fig:shift-variability}}
+\vspace*{-5pt}
 \end{figure}
+
+
+%\begin{figure}[t]\centering
+%%\includegraphics[width=\columnwidth]{graph_and_csv/plots/shift-cosine-correlation-plot.png}
+%\includegraphics[width=\columnwidth]{images/contextual_variability_shift_index_annotated_2.png}
+%\caption{Semantic shift index vs.~context variability for all words in the evaluation dataset (Pearson's $r$ = 0.55, $p< 0.001$). Red ellipses indicates the referential cases which are assigned high cosine distance values by the model (false positives).
+%\label{fig:shift-variability}}
+%\end{figure}
 
 
 %
