@@ -41,8 +41,8 @@ Red ellipsis:~false positives; blue ellipsis:~false negatives.
 \vspace*{-5pt}
 \end{figure}
 
-While the general tendency is in line with our expectations, we
-also find systematic deviations. 
+%Our hypothesis that meaning shift is mirrored by an increased cosine distance between time-related word vectors is confirmed by the positive correlation between cosine distance and semantic shift (Pearson's $r$= 0.49, $p<0.001$) - see Figure \ref{fig:shift-cosine}. 
+The positive correlation between cosine distance and semantic shift index (Pearson's $r$= 0.49, $p<0.001$, see Figure \ref{fig:shift-cosine}) confirms the hypothesis that meaning shift is mirrored by a change in context of use. However, we also find systematic deviations. 
 
 \paragraph{False negatives.}
 A small, but consistent group is that of %\textit{false negatives}: 
@@ -50,7 +50,9 @@ words that undergo semantic shift but are not captured by the model
 (blue ellipsis Figure~\ref{fig:shift-cosine}; shift index\textgreater 0.5, cosine distance\textless 0.25).
 These are all metaphorical shifts; in particular, cases of extended
 metaphor \cite{werth1994extended}, where the metaphor is 
-developed throughout the whole text produced by an author. For instance, besides the {\em `shovel'} example mentioned in Section~\ref{sec:types}, we find the word {\em `pharaoh'} as the nickname of an Egyptian player who
+developed throughout the whole text.
+%produced by an author. 
+For instance, besides the {\em `shovel'} example mentioned in Section~\ref{sec:types}, we find {\em `pharaoh'}, the nickname of an Egyptian player who
 joined Liverpool in 2017, used in
 sentences like \textit{`approved by our new Pharaoh Tutankhamun'}, or \textit{'our dear Egyptian Pharaoh, let's hope he becomes a God'}.
 Despite the metaphoric usage, the local context of these words is similar to the literal one, and so the model does not spot the meaning shift. We expect this to happen in long-term shift models, too, but we are not aware of results confirming this.
@@ -79,14 +81,14 @@ like these because
 embeddings are aggregated over a larger and more varied number of
 occurrences.
 
-We expect that in referential cases the contexts of use will not
-simply be different, but \textit{narrower} than for words with actual
-semantic shift, because they are specific to one person or
-event. Hence, using a measure of \textit{contextual variability}
+We expect that in referential cases the contexts of use will 
+%not simply be different, but 
+be \textit{narrower} than for words with actual
+semantic shift, as they are specific to one person or
+event. Hence, a measure of \textit{contextual variability}
 should help spot false positives.  To test this hypothesis, we define
 contextual variability as follows: for a target word, we create a
-vector for each of its contexts (consisting of 5 words to the left and
-to the right of the target) in $t_2$ by averaging the embeddings of
+vector for each of its contexts (5 words on both sides of the target) in $t_2$ by averaging the embeddings of
 the words occurring in it, and define variability as the average
 pairwise cosine distance between context vectors.  We find that
 contextual variability is indeed significantly correlated with
@@ -95,9 +97,12 @@ while it is independent from cosine distance (Pearson's $r$= 0.18,
 $p> 0.05$). These two aspects are thus complementary. While both shift
 words and referential cases change context of use in $t_2$, context
 variability captures the fact that only in referential cases words
-occur in a restricted set of contexts. The scatterplot in
+occur in a restricted set of contexts. 
+%The scatterplot in
 Figure~\ref{fig:shift-variability} shows this effect visually.  This
-result can inform future computational models of short-term meaning
+result can inform future 
+%computational 
+models of short-term meaning
 shift.
 % gbt: if anything, this should go in the conclusion, but I'd leave it out
 % In future work, we plan to investigate more in depth the interplay between variability, cosine and semantic shift, both in short- and long-term meaning change.
