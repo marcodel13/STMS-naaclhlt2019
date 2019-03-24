@@ -4,12 +4,7 @@
 We exploit user-generated language from an online forum of football fans,
 namely, the r/LiverpoolFC subreddit, one of the many communities hosted
 by the Reddit platform.\footnote{\url{https://www.reddit.com}.}
-%\marco{I would remove this link, it is useless} 
-%\raq{We can consider this at the end.}
-%\gbt{I'd keep this one, because it enables people to find the reddit
-%platform. I'm instead commenting out the ones on Python
-%packages below -- too low-level technical detail. Consider adding
-%them to the acknowledgements if they're open source (Praw, gensim)}
+\marco{\newcite{del2018road} showed that this subreddit presents many characteristics which favour the creation and spread of linguistic innovations - such as a topic that reflects a strong external interest and high density of the connections among its users. This makes the subreddit and ideal candidate for our investigation.}
 We focus on a short period of eight years, between 2011 and 2017. 
 In order to enable a clearer observation of short-term meaning shift, we define two
 non-consecutive time bins: the first one ($t_1$) contains data from
@@ -20,8 +15,6 @@ non-consecutive time bins: the first one ($t_1$) contains data from
  We also use a large sample of community-independent language for the
 initialization of the word vectors, namely, a random crawl from Reddit
 in 2013.
-%\footnote{We used the Python package Praw for downloading the
-        %data, \url{https://pypi.python.org/pypi/praw}.} 
 Table~\ref{tab:data} shows the size of each sample.
 
 
@@ -29,7 +22,8 @@ Table~\ref{tab:data} shows the size of each sample.
 
 \paragraph{Model.}
 
-In the method proposed by \newcite{kim2014temporal}, word
+\marco{We adopt the model proposed by \newcite{kim2014temporal}, an established method for computing diachronic meaning shift. While other methods might be equally suitable (see Section \ref{sect:Related_Work}), we expect our results not to be method-specific.} 
+In the model by \newcite{kim2014temporal}, word
 embeddings for the first time bin $t_1$ are initialized randomly; then,
 given a sequence of time-related samples, embeddings for $t_i$
 are initialized using the embeddings of $t_{i-1}$ and further
@@ -114,8 +108,8 @@ A threshold of 2 standard deviations above the mean yielded
 $\sim$200 words.~The first author manually identified 34 semantic
 shift candidates among these words by analyzing their contexts of use
 in the r/LiverpoolFC data.  Semantic shift is defined here as a change
-in the ontological type that a word denotes (cf.~examples in
-Sec.~\ref{sec:types}). We added two types of confounders: 33 words
+in the ontological type that a word denotes, \marco{which takes place when the word starts to be used to denote an entity which is different from the one originally denoted and the new use is spread among the members of a community (cf.~examples in Sec.~\ref{sec:types}).} 
+We added two types of confounders: 33 words
 with a significant frequency increase but not marked as meaning
 shift candidates, and 33 words with constant frequency between $t_1$
 and $t_2$, included as a sanity check.\footnote{All words have
@@ -124,7 +118,8 @@ and $t_2$, included as a sanity check.\footnote{All words have
 The participants were shown the 100 words (in randomized order)
 together with randomly chosen contexts of usage from each time period
 ($\mu$=4.7 contexts per word) and, for simplicity, were asked to make
-a binary decision about whether there was a change in meaning. 
+a binary decision about whether there was a change in meaning. \marco{In order to let the redditors familiarize with the concept of meaning change, we first provide them an intuitive, non-technical definition, and then a set of cases which exemplify it (see Supplementary Material).}
+
 As semantic shift is arguably a graded notion, we 
 aggregate the annotations into a graded \emph{semantic shift index},
 %However, semantic shift is arguably a graded notion, so we

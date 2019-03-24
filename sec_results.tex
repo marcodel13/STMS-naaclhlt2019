@@ -87,10 +87,11 @@ be \textit{narrower} than for words with actual
 semantic shift, as they are specific to one person or
 event. Hence, a measure of \textit{contextual variability}
 should help spot false positives.  To test this hypothesis, we define
-contextual variability as follows: for a target word, we create a
+contextual variability as follows:\footnote{\marco{While there can be other potential ways to measure context variability, we expect them to yield the same picture.}} for a target word, we create a
 vector for each of its contexts (5 words on both sides of the target) in $t_2$ by averaging the embeddings of
 the words occurring in it, and define variability as the average
-pairwise cosine distance between context vectors.  We find that
+pairwise cosine distance between context vectors.\footnote{\marco{We experimented with a different window size and obtained the same pattern.}} 
+We find that
 contextual variability is indeed significantly correlated with
 semantic shift in our dataset (Pearson's $r\!=\!0.55$, $p\!<\!0.001$),
 while it is independent from cosine distance (Pearson's $r$= 0.18,
@@ -108,7 +109,7 @@ shift.
 % In future work, we plan to investigate more in depth the interplay between variability, cosine and semantic shift, both in short- and long-term meaning change.
 
 \begin{figure}[h!]\centering
-\includegraphics[height=4.3cm]{images/contextual_variability_shift_index_annotated_3.pdf}
+\includegraphics[width=\columnwidth]{images/contextual_variability_shift_index_annotated_3.pdf}
 \vspace*{-2pt}
 \caption{Semantic shift index vs.~context variability. Red ellipsis: referential cases which are assigned high cosine distance values by the model (false positives).\label{fig:shift-variability}}
 \vspace*{-5pt}
