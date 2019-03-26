@@ -34,7 +34,7 @@
 % RAQ's VERSION
 
 \begin{figure}[t]\centering
-\includegraphics[width=\columnwidth]{images/cosine_distance_shift_index_annotated_3.png}
+\includegraphics[width=\columnwidth]{images/cosine_distance_shift_index_annotated_4.png}
 \caption{Semantic shift index vs.~cosine distance in the evaluation dataset (Pearson's $r$ = 0.49, $p< 0.001$). 
 Red ellipsis:~false positives; blue ellipsis:~false negatives.
 \label{fig:shift-cosine}}
@@ -43,7 +43,10 @@ Red ellipsis:~false positives; blue ellipsis:~false negatives.
 %Our hypothesis that meaning shift is mirrored by an increased cosine distance between time-related word vectors is confirmed by the positive correlation between cosine distance and semantic shift (Pearson's $r$= 0.49, $p<0.001$) - see Figure \ref{fig:shift-cosine}. 
 The positive correlation between cosine distance and semantic shift index (Pearson's $r$= 0.49, $p<0.001$, see Figure \ref{fig:shift-cosine}) confirms the hypothesis that meaning shift is mirrored by a change in context of use. However, we also find systematic deviations. 
 
-\paragraph{False negatives.}
+%\paragraph{False negatives.}
+\subsection{False negatives}
+\label{subsec:False negatives}
+
 A small, but consistent group is that of %\textit{false negatives}: 
 words that undergo semantic shift but are not captured by the model
 (blue ellipsis Figure~\ref{fig:shift-cosine}; shift index\textgreater 0.5, cosine distance\textless 0.25).
@@ -56,7 +59,9 @@ joined Liverpool in 2017, used in
 sentences like \textit{`approved by our new Pharaoh Tutankhamun'}, or \textit{'our dear Egyptian Pharaoh, let's hope he becomes a God'}.
 Despite the metaphoric usage, the local context of these words is similar to the literal one, and so the model does not spot the meaning shift. We expect this to happen in long-term shift models, too, but we are not aware of results confirming this.
 
-\paragraph{False positives.}
+%\paragraph{False positives.}
+\subsection{False positives}
+\label{subsec:False positives}
 A larger group of problematic cases is that of %\textit{false positives}, that is, 
 words that do \textit{not} undergo semantic shift despite showing
 relatively large differences in context between $t_1$ and $t_2$ (red ellipsis in
@@ -108,7 +113,7 @@ shift.
 % In future work, we plan to investigate more in depth the interplay between variability, cosine and semantic shift, both in short- and long-term meaning change.
 
 \begin{figure}[h!]\centering
-\includegraphics[width=\columnwidth]{images/contextual_variability_shift_index_annotated_3.pdf}
+\includegraphics[width=\columnwidth]{images/contextual_variability_shift_index_annotated_4.png}
 \caption{Semantic shift index vs.~context variability. Red ellipsis: referential cases which are assigned high cosine distance values by the model (false positives).\label{fig:shift-variability}}
 \end{figure}
 
