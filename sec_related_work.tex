@@ -3,21 +3,8 @@ that a change in context of use mirrors a change in meaning.
 This in turn stems from the Distributional Hypothesis, that states
 that similarity in meaning results in similarity in context of use \cite{harris1954distributional}.
 Therefore, all models (including ours) spot semantic shift as a change in the word representation in different time periods.
-%
-% VERSION INCLUDED IN THE SUBMITTED PAPER
-%This includes classic distributional representations obtained with count-based models, topic
-%modelling or Latent Semantic Analysis
-%\cite{sagi2011tracing,jatowt2014framework,wijaya2011understanding,gulordava2011distributional}
-%as well as more recent, neural-network based word embeddings
-%\cite{kim2014temporal,kulkarni2015statistically,hamilton2016diachronic,azarbonyad2017words,szymanski2017temporal,yao2018dynamic}.
-%Note, however, that distributional representations from different time periods 
-%are not easily comparable.
-%We adapt the method by \newcite{kim2014temporal} to enable comparison
-%(see Section~\ref{sec:setup}).
-%
-% EXTENDED VERSION FOR CAMERA READY
-\marco{Among the most widely used techniques are Latent Semantic Analysis \cite{sagi2011tracing,jatowt2014framework}, Topic Modeling \cite{wijaya2011understanding}, and simple co-occurence matrices of target words and context terms  \cite{gulordava2011distributional}.
- More recently, researchers have used word embeddings computed using the skip-gram model by \newcite{mikolov2013distributed}. Since embeddings computed in different semantic spaces are not directly comparable, time related representations are usually made comparable either by aligning different semantic spaces through a transformation matrix \cite{kulkarni2015statistically,azarbonyad2017words, hamilton2016diachronic} or by initializing the embeddings at $t_{i+1}$ using those computed at $t_i$ \cite{kim2014temporal,del2016tracing,phillips2017intrinsic,szymanski2017temporal}. We adopt the latter methodology.}
+Among the most widely used techniques are Latent Semantic Analysis \cite{sagi2011tracing,jatowt2014framework}, Topic Modeling \cite{wijaya2011understanding}, classic distributional representations based on co-occurence matrices of target words and context terms \cite{gulordava2011distributional}.
+ More recently, researchers have used word embeddings computed using the skip-gram model by \newcite{mikolov2013distributed}. Since embeddings computed in different semantic spaces are not directly comparable, time related representations are usually made comparable either by aligning different semantic spaces through a transformation matrix \cite{kulkarni2015statistically,azarbonyad2017words, hamilton2016diachronic} or by initializing the embeddings at $t_{i+1}$ using those computed at $t_i$ \cite{kim2014temporal,del2016tracing,phillips2017intrinsic,szymanski2017temporal}. We adopt the latter methodology (see Section~\ref{sec:setup}).
 
 Unlike previous work, we focus on the language of online communities.
 Recent studies of this type of language have investigated the spread of new forms and meanings~\cite{del2017semantic,del2018road,stewart2018making}, 

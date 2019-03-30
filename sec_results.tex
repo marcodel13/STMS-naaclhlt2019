@@ -91,10 +91,12 @@ be \textit{narrower} than for words with actual
 semantic shift, as they are specific to one person or
 event. Hence, a measure of \textit{contextual variability}
 should help spot false positives.  To test this hypothesis, we define
-contextual variability as follows:\footnote{\marco{While there can be other potential ways to measure context variability, we expect them to yield the same picture.}} for a target word, we create a
+contextual variability as follows: For a target word, we create a
 vector for each of its contexts (5 words on both sides of the target) in $t_2$ by averaging the embeddings of
 the words occurring in it, and define variability as the average
-pairwise cosine distance between context vectors.\footnote{\marco{We experimented with a different window size and obtained the same pattern.}} 
+pairwise cosine distance between context vectors.%
+\footnote{There are alternative ways of measuring measure contextual variability, but we expect them to yield the same picture.
+For instance, we experimented with a different window size and obtained the same pattern.}
 We find that
 contextual variability is indeed significantly correlated with
 semantic shift in our dataset (Pearson's $r\!=\!0.55$, $p\!<\!0.001$),
