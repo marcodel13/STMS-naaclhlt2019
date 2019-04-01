@@ -2,7 +2,7 @@
 \label{subsec:Data}
 We exploit user-generated language from an online forum of football fans,
 namely, the r/LiverpoolFC subreddit, one of the many communities hosted
-by the Reddit platform.\footnote{\url{https://www.reddit.com}.}
+by the Reddit platform.\footnote{\url{https://www.reddit.com}. We downloaded Reddit data using the Python package Praw: \url{https://pypi.python.org/pypi/praw/}.}
 \newcite{del2018road} showed that this subreddit presents many characteristics that favour the creation and spread of linguistic innovations, such as a topic that reflects a strong external interest and high density of the connections among its users. This makes it a good candidate for our investigation.
 We focus on a short period of eight years, between 2011 and 2017. 
 In order to enable a clearer observation of short-term meaning shift, we define two
@@ -18,8 +18,7 @@ Table~\ref{tab:data} shows the size of each sample.
 
 \subsection{Model}
 \label{subsec:Model}
-We adopt the model proposed by \newcite{kim2014temporal}, a representative method for computing diachronic meaning shift. 
-While other methods might be equally suitable (see Section \ref{sect:Related_Work}), we expect our results not to be method-specific, because they concern general properties of short-term shift (see Sections~\ref{sec:types} and~\ref{sec:results}).
+We adopt the model proposed by \newcite{kim2014temporal}, a representative method for computing diachronic meaning shift.\footnote{The model was implemented using the Python package Gensim: \url{https://pypi.python.org/pypi/gensim/}.} While other methods might be equally suitable (see Section \ref{sect:Related_Work}), we expect our results not to be method-specific, because they concern general properties of short-term shift (see Sections~\ref{sec:types} and~\ref{sec:results}).
 In the model by \newcite{kim2014temporal}, word
 embeddings for the first time bin $t_1$ are initialized randomly; then,
 given a sequence of time-related samples, embeddings for $t_i$
@@ -117,7 +116,7 @@ and $t_2$, included as a sanity check. All words have
 The participants were shown the 100 words (in randomized order)
 together with randomly chosen contexts of usage from each time period
 ($\mu$=4.7 contexts per word) and, for simplicity, were asked to make
-a binary decision about whether there was a change in meaning. In order to have the redditors familiarize with the concept of meaning change, we first provide them with an intuitive, non-technical definition, and then a set of cases that exemplify it (see Supplementary Material).
+a binary decision about whether there was a change in meaning. In order to have the redditors familiarize with the concept of meaning change, we first provide them with an intuitive, non-technical definition, and then a set of cases that exemplify it. The instructions to participants can be found in the Github project folder, see footnote \ref{note1}.
 
 As semantic shift is arguably a graded notion, we 
 aggregate the annotations into a graded \emph{semantic shift index},
@@ -126,13 +125,14 @@ spotted semantic change. The shift index is exclusively based
   on the judgments of the redditors, and does not consider the
   preliminary candidates selection done by us.  Overall, 26 members
 of r/LiverpoolFC participated in the survey, and each word received on
-average 8.8 judgements. Three words were discarded after analysis of
-the redditor data.\footnote{The words are: `discord' and `owls' due to
-  the homonymy with proper names not detected during survey's
-  implementation; `tracking' because the chosen examples clearly
-  mislead the judgements of the redditors.}  Further details,
-including the instructions to participants, are in the supplementary
-material.
+average 8.8 judgements. 
+%Three words were discarded after analysis of
+%the redditor data.\footnote{The words are: `discord' and `owls' due to
+%  the homonymy with proper names not detected during survey's
+%  implementation; `tracking' because the chosen examples clearly
+%  mislead the judgements of the redditors.}  
+  Further details about the dataset are in Appendix \ref{sec:further_details_data_model}. 
+
 
 %%% Local Variables:
 %%% mode: latex

@@ -109,7 +109,35 @@ This project has received funding from the European Research Council (ERC) under
 \bibliography{naaclhlt2019}
 \bibliographystyle{acl_natbib}
 
-%\appendix
+\appendix
+
+%\section{Further details on Data and Model}
+%\label{sec:further_details_data_model}
+%
+%We downloaded Reddit data using the Python package Praw: \url{https://pypi.python.org/pypi/praw/}.
+%
+%The model was implemented using the Python package Gensim: \url{https://pypi.python.org/pypi/gensim/}.
+
+
+\section{Further details on Evaluation Dataset}
+\label{sec:further_details_data_model}
+
+For our experiment, we considered content words only, which we identified by using the external list of common words available at \url{https://www.wordfrequency.info/free.asp}.
+
+Three words were discarded from the initial list after analysis of the redditor data: `discord' and `owls' due to the homonymy with proper names not detected during survey's implementation; `tracking' because the chosen examples clearly mislead the judgements of the redditors.
+
+As detailed in the main paper, 26 members of r/LiverpoolFC participated in the survey, and each word received on average 8.8 judgements. We computed inter-annotator agreement as Krippendorff's alpha, and obtained $\alpha$ = 0.58, a relatively low value but common in semantic tasks \cite{artstein2008inter}.
+
+The results of the annotation validate our initial word sampling procedure:
+
+\begin{itemize}
+\item  the words that present a significant increase in frequency and were annotated as
+meaning shift by us received an average shift annotation of 0.72 ($\pm$ 0.15);
+\item the words that present a
+significant increase in frequency but that were \emph{not} annotated as
+meaning shift by us received an average shift annotation of  0.15 ($\pm$ 0.16);
+\item the words that keep a constant frequency between $t_1$ and $t_2$, and we don't consider examples of meaning shift, got 0.07 ($\pm$ 0.12).
+\end{itemize}
 
 \end{document}
 
