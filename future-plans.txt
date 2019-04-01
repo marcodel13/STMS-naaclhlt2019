@@ -1,0 +1,24 @@
+gbt, April 2019
+
+from email exchanges
+
+G: looking at the paper I think that now it's becoming much more substantial than it was. We initially sold it as "we test a ds model of long-term shift on short-term shift on a small dataset", and I see that as you say this is not enough for a long paper. However, now we are moving towards doing more, and this will increase if we add the phases thing: we report findings about how short-term shift works, based on our analysis of the results of (a) the subject data collection, (b) the ds model. This includes the types of shift we find in the short-meaning scale as well as the role of communities in how words are used and how this affects the results, both from a linguistic perspective (correlations between meaning shift - contextual variability - contextual change and how we explain them) and from a computational modeling perspective (interference of referential aspects when using a standard model of semantic shift). Moreover, we are doing all this from a comparative perspective: we compare what we get to what is known about how long-term meaning shift works. So imo the contribution of the paper is twofold (modeling insights, linguistic insights).
+
+R: 
+If we go for a long paper, we would need to add:
+
+- an extended version of the related work section
+- a proper section on the evaluation dataset with all details
+- a lightly extended version of the section on types of meaning shift 
+found in the data (I can do this)
+- I think we need to revisit the contextual variability analysis (I was 
+planning to do that on Monday anyway)
+- the section on phases
+
+One aspect which I think is underdeveloped in our current analysis is 
+the comparison between what we find for short-term shift and what is 
+known about long-term shift. The surveys above mention laws of semantic 
+change identified in previous work (sec 4 coling survey and sec 4.1.4 in 
+the arxiv survey). I'm not sure if we can, but would expect a long paper 
+to say something about this.
+
