@@ -34,17 +34,19 @@
 % RAQ's VERSION
 
 \begin{figure}[t]\centering
-\includegraphics[width=\columnwidth]{images/cosine_distance_shift_index_annotated_3.png}
+\includegraphics[width=\columnwidth]{images/cosine_distance_shift_index_annotated_4.png}
 \caption{Semantic shift index vs.~cosine distance in the evaluation dataset (Pearson's $r$ = 0.49, $p< 0.001$). 
 Red ellipsis:~false positives; blue ellipsis:~false negatives.
 \label{fig:shift-cosine}}
-\vspace*{-5pt}
 \end{figure}
 
 %Our hypothesis that meaning shift is mirrored by an increased cosine distance between time-related word vectors is confirmed by the positive correlation between cosine distance and semantic shift (Pearson's $r$= 0.49, $p<0.001$) - see Figure \ref{fig:shift-cosine}. 
 The positive correlation between cosine distance and semantic shift index (Pearson's $r$= 0.49, $p<0.001$, see Figure \ref{fig:shift-cosine}) confirms the hypothesis that meaning shift is mirrored by a change in context of use. However, we also find systematic deviations. 
 
-\paragraph{False negatives.}
+%\paragraph{False negatives.}
+\subsection{False negatives}
+\label{subsec:False negatives}
+
 A small, but consistent group is that of %\textit{false negatives}: 
 words that undergo semantic shift but are not captured by the model
 (blue ellipsis Figure~\ref{fig:shift-cosine}; shift index\textgreater 0.5, cosine distance\textless 0.25).
@@ -57,14 +59,16 @@ joined Liverpool in 2017, used in
 sentences like \textit{`approved by our new Pharaoh Tutankhamun'}, or \textit{'our dear Egyptian Pharaoh, let's hope he becomes a God'}.
 Despite the metaphoric usage, the local context of these words is similar to the literal one, and so the model does not spot the meaning shift. We expect this to happen in long-term shift models, too, but we are not aware of results confirming this.
 
-\paragraph{False positives.}
+%\paragraph{False positives.}
+\subsection{False positives}
+\label{subsec:False positives}
 A larger group of problematic cases is that of %\textit{false positives}, that is, 
 words that do \textit{not} undergo semantic shift despite showing
 relatively large differences in context between $t_1$ and $t_2$ (red ellipsis in
 Figure~\ref{fig:shift-cosine}; shift index=0, cosine distance\textgreater	
 0.25). Manual inspection reveals that most of these ``errors'' 
 are due to a referential effect: words are used
-almost exclusively to refer to a specific person or event, and
+almost exclusively to refer to a specific person or event in $t_2$, and
 so the context of use is different from the contexts in $t_1$.
 %\todo{M:this is dangerous, cause we do not prove this} 
 For instance, {\em `stubborn'} is
@@ -87,10 +91,12 @@ be \textit{narrower} than for words with actual
 semantic shift, as they are specific to one person or
 event. Hence, a measure of \textit{contextual variability}
 should help spot false positives.  To test this hypothesis, we define
-contextual variability as follows:\footnote{\marco{While there can be other potential ways to measure context variability, we expect them to yield the same picture.}} for a target word, we create a
+contextual variability as follows: For a target word, we create a
 vector for each of its contexts (5 words on both sides of the target) in $t_2$ by averaging the embeddings of
 the words occurring in it, and define variability as the average
-pairwise cosine distance between context vectors.\footnote{\marco{We experimented with a different window size and obtained the same pattern.}} 
+pairwise cosine distance between context vectors.%
+\footnote{There are alternative ways of measuring measure contextual variability, but we expect them to yield the same picture.
+For instance, we experimented with a different window size and obtained the same pattern.}
 We find that
 contextual variability is indeed significantly correlated with
 semantic shift in our dataset (Pearson's $r\!=\!0.55$, $p\!<\!0.001$),
@@ -109,10 +115,8 @@ shift.
 % In future work, we plan to investigate more in depth the interplay between variability, cosine and semantic shift, both in short- and long-term meaning change.
 
 \begin{figure}[h!]\centering
-\includegraphics[width=\columnwidth]{images/contextual_variability_shift_index_annotated_3.pdf}
-\vspace*{-2pt}
+\includegraphics[width=\columnwidth]{images/contextual_variability_shift_index_annotated_4.png}
 \caption{Semantic shift index vs.~context variability. Red ellipsis: referential cases which are assigned high cosine distance values by the model (false positives).\label{fig:shift-variability}}
-\vspace*{-5pt}
 \end{figure}
 
 
