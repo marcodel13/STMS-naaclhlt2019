@@ -66,7 +66,7 @@ We train with standard skip-gram parameters \cite{levy2015improving}: window 5, 
 
 
 %----- TABLE ----------------------------------------------------
-\begin{table}[t!]\small
+\begin{table}[t!]
 \centering
 \begin{tabular}{lccc}
 \bf sample & \bf time bin & \bf million tokens \\
@@ -77,7 +77,7 @@ LiverpoolFC$_{17}$ & 2017 & 11.9\\ \hline
 \end{tabular}
 \caption{Time bin and size of the datasets.}
 \label{tab:data}
-\vspace*{-12pt}
+%\vspace*{-12pt}
 \end{table}
 %----- END TABLE -----------------------------------------
 
@@ -118,12 +118,11 @@ together with randomly chosen contexts of usage from each time period
 ($\mu$=4.7 contexts per word) and, for simplicity, were asked to make
 a binary decision about whether there was a change in meaning. In order to have the redditors familiarize with the concept of meaning change, we first provide them with an intuitive, non-technical definition, and then a set of cases that exemplify it. The instructions to participants can be found in the project's GitHub repository (see footnote \ref{note1}).
 
-As semantic shift is arguably a graded notion, we 
-aggregate the annotations into a graded \emph{semantic shift index},
+Semantic shift is arguably a graded notion. In line with a suggestion by \newcite{KutuzovEtal-coling2018} to account for this fact, we aggregate the annotations into a graded \emph{semantic shift index},
 ranging from 0 (no shift) to 1 (shift) depending on how many subjects
-spotted semantic change \cite{KutuzovEtal-coling2018}. The shift index is exclusively based
+spotted semantic change . The shift index is exclusively based
   on the judgments of the redditors, and does not consider the
-  preliminary candidates selection done by us.  Overall, 26 members
+  preliminary candidate selection done by us.  Overall, 26 members
 of r/LiverpoolFC participated in the survey, and each word received on
 average 8.8 judgements. 
 %Three words were discarded after analysis of
