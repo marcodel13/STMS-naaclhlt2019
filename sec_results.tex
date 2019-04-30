@@ -36,7 +36,7 @@
 \begin{figure}[t]\centering
 \includegraphics[width=\columnwidth]{images/cosine_distance_shift_index_annotated_6.png}
 \caption{Semantic shift index vs.~cosine distance in the evaluation dataset (Pearson's $r$ = 0.49, $p< 0.001$). 
-Red ellipsis:~false positives; blue ellipsis:~false negatives.
+Red horizontal ellipsis:~false positives; blue vertical ellipsis:~false negatives.
 \label{fig:shift-cosine}}
 \end{figure}
 
@@ -49,7 +49,7 @@ The positive correlation between cosine distance and semantic shift index (Pears
 
 A small, but consistent group is that of %\textit{false negatives}: 
 words that undergo semantic shift but are not captured by the model
-(blue ellipsis Figure~\ref{fig:shift-cosine}; shift index\textgreater 0.5, cosine distance\textless 0.25).
+(blue vertical ellipsis Figure~\ref{fig:shift-cosine}; shift index\textgreater 0.5, cosine distance\textless 0.25).
 These are all metaphorical shifts; in particular, cases of extended
 metaphor \cite{werth1994extended}, where the metaphor is 
 developed throughout the whole text.
@@ -64,7 +64,7 @@ Despite the metaphoric usage, the local context of these words is similar to the
 \label{subsec:False positives}
 A larger group of problematic cases is that of %\textit{false positives}, that is, 
 words that do \textit{not} undergo semantic shift despite showing
-relatively large differences in context between $t_1$ and $t_2$ (red ellipsis in
+relatively large differences in context between $t_1$ and $t_2$ (red horizontal ellipsis in
 Figure~\ref{fig:shift-cosine}; shift index=0, cosine distance\textgreater	
 0.25). Manual inspection reveals that most of these ``errors'' 
 are due to a referential effect: words are used
@@ -116,7 +116,7 @@ shift.
 
 \begin{figure}[h!]\centering
 \includegraphics[width=\columnwidth]{images/contextual_variability_shift_index_annotated_4.png}
-\caption{Semantic shift index vs.~context variability. Red ellipsis: referential cases which are assigned high cosine distance values by the model (false positives).\label{fig:shift-variability}}
+\caption{Semantic shift index vs.~context variability. Red horizontal ellipsis: referential cases which are assigned high cosine distance values by the model (false positives).\label{fig:shift-variability}}
 \end{figure}
 
 
